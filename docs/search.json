@@ -1,0 +1,332 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "",
+    "text": "1 AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#课程简介",
+    "href": "index.html#课程简介",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "1.1 课程简介",
+    "text": "1.1 课程简介\n在人工智能时代，经济学研究者需要一套完整的工具链来应对日益复杂的研究任务。为此数量经济学微信公众号于2026年4月14日19:30开启2026年上半年系列公开课！\n本课程旨在引入人工智能工具链，构建现代化的 Stata 计量经济学研究工作流程。通过整合 VS Code、Stata MCP、Claude Code 等前沿工具，实现从代码编写、结果管理到论文复刻的全流程智能化辅助。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#核心工具栈",
+    "href": "index.html#核心工具栈",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "1.2 核心工具栈",
+    "text": "1.2 核心工具栈\n\n\n\n工具类型\n工具名称\n用途\n\n\n\n\n文本编辑器\nVisual Studio Code\n代码编辑与项目管理\n\n\n统计软件\nStata\n计量经济学分析\n\n\n协议层\nStata MCP\nAI与Stata深度集成\n\n\nAI代码补全\nGitHub Copilot\n智能代码提示",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#学习目标",
+    "href": "index.html#学习目标",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "1.3 学习目标",
+    "text": "1.3 学习目标\n完成本课程后，学员应能够：\n\n熟练配置基于 VS Code 的现代化 Stata 开发环境\n建立规范、可复现的计量研究工作流程\n有效运用 AI 工具提升代码编写效率\n理解并应用 Stata MCP 实现 AI 与统计软件的深度集成",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#课程大纲",
+    "href": "index.html#课程大纲",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "1.4 课程大纲",
+    "text": "1.4 课程大纲\n\n1.4.1 第一讲：Stata 环境配置与 VS Code 集成\n\nStata 基础设置（Profile 文件、PLUS 目录）\nVS Code 中的 Stata 开发环境配置\n\n\n\n1.4.2 第二讲：Do-file 运行与结果管理\n\nDo-file 开发实践与代码规范\n常见报错与调试技巧\n\n\n\n1.4.3 第三讲：Claude Code + Stata MCP 深度协作\n\nStata MCP 配置与原理\nAI 辅助研究实战",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#相关资源",
+    "href": "index.html#相关资源",
+    "title": "AI Agent辅助计量经济学研究：Stata 现代化工作流程",
+    "section": "1.5 相关资源",
+    "text": "1.5 相关资源\n\n2026年4月14日直播回顾｜AI+Stata3.0新工作流：Claude ×Stata 学术应用\n【6月16日讲座】AI 时代一站式科研解决方案\nStata 入门白皮书\n计量经济网\n\n\n\n\n\n\n\n提示\n\n\n\n使用左侧边栏导航浏览各章节内容。点击右上角的搜索按钮可以快速搜索内容。",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>AI Agent辅助计量经济学研究：Stata 现代化工作流程</span>"
+    ]
+  },
+  {
+    "objectID": "01-stata-vscode.html",
+    "href": "01-stata-vscode.html",
+    "title": "2  第一讲：Stata 环境配置与 VS Code 集成",
+    "section": "",
+    "text": "2.1 Stata 基础设置",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一讲：Stata 环境配置与 VS Code 集成</span>"
+    ]
+  },
+  {
+    "objectID": "01-stata-vscode.html#stata-basics",
+    "href": "01-stata-vscode.html#stata-basics",
+    "title": "2  第一讲：Stata 环境配置与 VS Code 集成",
+    "section": "",
+    "text": "2.1.1 Profile 文件设置\nStata 的 profile.do 文件是 Stata 启动时自动执行的脚本文件，用于配置个性化工作环境。\n\n查找 Profile 文件位置\nProfile 文件应放置在 Stata 的启动目录下。可以通过以下命令查看当前目录：\npwd\n\n\n创建 Profile 文件\n在 Stata 中输入以下命令创建或编辑 profile.do：\ndoedit profile.do\n\n\n推荐的 Profile 配置\n*-------------------------------------------------------------------------------\n*  Stata Profile 配置文件\n*  数量经济学 - 2026学术公开课\n*-------------------------------------------------------------------------------\n\n* 基本设置\nset more off, permanently\nset linesize 120, permanently\nset matsize 800, permanently\nset scrollbufsize 200000, permanently\nset seed 20260624, permanently\n\n* 显示设置\nset varabbrev off, permanently\nset autotabgraphs on, permanently\n\n* 记忆设置\nset maxvar 10000, permanently\n\n* 输出格式\nset cformat %6.4f, permanently\nset pformat %6.4f, permanently\nset sformat %9.0g, permanently\n\n* 显示欢迎信息\ndi as text \"\"\ndi as text \" _   _ _       _        \"\ndi as text \"| | | (_) __ _| |_ __ _ \"\ndi as text \"| |_| | |/ _` | __/ _` |\"\ndi as text \"|  _  | | (_| | || (_| |\"\ndi as text \"|_| |_|_|\\__,_|\\__\\__,_|\"\ndi as text \"\"\ndi as text \"欢迎使用 Stata 现代化工作流程！\"\ndi as text \"\"\ndi as text \"计量经济网: https://www.aistata.cn\"\ndi as text \"\"\n\n*-------------------------------------------------------------------------------\n*  路径配置\n*-------------------------------------------------------------------------------\n\n* 设置 PLUS 目录（用户自行修改路径）\n* sysdir set PLUS \"C:/ado/plus\"\n\n* 设置 PERSONAL 目录\n* sysdir set PERSONAL \"C:/ado/personal\"\n\n* 显示系统目录\nsysdir\n\n\n\n\n\n\n重要\n\n\n\n请根据你的实际操作系统修改路径配置。Windows 使用反斜杠 \\ 或正斜杠 /，macOS 和 Linux 使用正斜杠 /。\n\n\n\n\n\n2.1.2 PLUS 目录配置与外部命令管理\n\n理解 Stata 的 ado 目录结构\nStata 使用多个目录来存储 ado 文件：\nBASE/      Stata 官方基础命令\nPLUS/      用户安装的外部命令\nPERSONAL/  用户个人编写的命令\nSITE/      站点级命令\nOLDPLACE/  旧版兼容目录\n\n\n配置 PLUS 目录\n查看当前 PLUS 目录：\nsysdir list\n设置 PLUS 目录（示例）：\n* Windows 系统\nsysdir set PLUS \"C:/Stata/ado/plus\"\nsysdir set PERSONAL \"C:/Stata/ado/personal\"\n\n* macOS 系统\nsysdir set PLUS \"~/Documents/Stata/ado/plus\"\nsysdir set PERSONAL \"~/Documents/Stata/ado/personal\"\n\n* Linux 系统\nsysdir set PLUS \"~/stata/ado/plus\"\nsysdir set PERSONAL \"~/stata/ado/personal\"\n将永久设置写入 profile.do：\ndoedit profile.do\n\n\n外部命令安装与管理\n常用外部命令安装：\n* 基础工具包\nssc install ftools, replace\nssc install gtools, replace\nssc install reghdfe, replace\nssc install estout, replace\nssc install coefplot, replace\n\n* 数据处理\nssc install tidy, replace\nssc install gdata, replace\n\n* 绘图扩展\nssc install grstyle, replace\nssc install palettes, replace\nssc install colrspace, replace\n\n* 因果推断\nssc install did_multiplegt, replace\nssc install did_imputation, replace\nssc install csdid, replace\nssc install drdid, replace\n\n* 机器学习\nssc install rforest, replace\nssc install lassopack, replace\nssc install pdslasso, replace\n检查已安装的命令：\nado dir\n更新已安装的命令：\nado update, update",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一讲：Stata 环境配置与 VS Code 集成</span>"
+    ]
+  },
+  {
+    "objectID": "01-stata-vscode.html#vscode-stata",
+    "href": "01-stata-vscode.html#vscode-stata",
+    "title": "2  第一讲：Stata 环境配置与 VS Code 集成",
+    "section": "2.2 VS Code 中的 Stata 开发环境",
+    "text": "2.2 VS Code 中的 Stata 开发环境\n\n2.2.1 Stata Enhanced 扩展安装与配置\n\n安装扩展\n\n打开 VS Code\n点击左侧扩展图标（或按 Ctrl+Shift+X）\n搜索 “Stata Enhanced”\n点击安装\n\n推荐安装的扩展：\n\n\n\n扩展名称\n用途\n\n\n\n\nStata Enhanced\nStata 语法高亮与代码执行\n\n\nStata LSP\nStata 语言服务器\n\n\nStata Jupyter Kernel\nJupyter 中运行 Stata\n\n\nGitHub Copilot\nAI 代码补全\n\n\nCode Spell Checker\n拼写检查\n\n\nMarkdown All in One\nMarkdown 编辑\n\n\nQuarto\nQuarto 文档编辑\n\n\nGit Graph\nGit 可视化\n\n\n\n\n\n配置 Stata Enhanced\n在 VS Code 设置中（Ctrl+,）搜索 “Stata”，进行以下配置：\n{\n  \"stata.stataPath\": \"C:/Program Files/Stata18/StataMP-64.exe\",\n  \"stata.version\": 18,\n  \"stata.allowShortcuts\": true,\n  \"stata.executeDelay\": 100,\n  \"stata.includeComments\": true\n}\nWindows 用户配置示例：\n{\n  \"stata.stataPath\": \"C:/Program Files/Stata18/StataMP-64.exe\",\n  \"stata.version\": 18\n}\nmacOS 用户配置示例：\n{\n  \"stata.stataPath\": \"/Applications/Stata/StataMP.app\",\n  \"stata.version\": 18\n}\nLinux 用户配置示例：\n{\n  \"stata.stataPath\": \"/usr/local/stata18/stata-mp\",\n  \"stata.version\": 18\n}\n\n\n\n2.2.2 语法高亮、代码折叠、自动补全功能\n\n语法高亮配置\nStata Enhanced 提供了完善的语法高亮，支持：\n\n命令关键字高亮\n宏和函数识别\n注释区分\n字符串高亮\n数字高亮\n\n自定义颜色主题示例（在 settings.json 中）：\n{\n  \"editor.tokenColorCustomizations\": {\n    \"textMateRules\": [\n      {\n        \"scope\": \"keyword.control.stata\",\n        \"settings\": {\n          \"foreground\": \"#569CD6\"\n        }\n      },\n      {\n        \"scope\": \"string.quoted.double.stata\",\n        \"settings\": {\n          \"foreground\": \"#CE9178\"\n        }\n      }\n    ]\n  }\n}\n\n\n代码折叠设置\n在 settings.json 中配置代码折叠：\n{\n  \"editor.folding\": true,\n  \"editor.foldingStrategy\": \"indentation\",\n  \"editor.foldingHighlight\": true,\n  \"editor.showFoldingControls\": \"always\"\n}\nStata 代码中可使用特殊标记来定义可折叠区域：\n*-------------------------------------------------------------------------------\n* 区域1: 数据加载 {{{\n*-------------------------------------------------------------------------------\nsysuse auto, clear\ndescribe\nsummarize\n* }}}\n\n*-------------------------------------------------------------------------------\n* 区域2: 回归分析 {{{\n*-------------------------------------------------------------------------------\nregress price mpg weight length\nestimates store model1\n* }}}\n使用 {{{ 和 }}} 标记可以创建自定义折叠区域。\n\n\n自动补全功能\nVS Code 为 Stata 提供以下自动补全：\n\n命令补全：输入命令前缀，按 Tab 或 Ctrl+Space\n变量名补全：在代码中引用变量时自动提示\n选项补全：命令选项自动提示\n路径补全：文件路径自动完成\n\n配置自动补全行为：\n{\n  \"editor.quickSuggestions\": {\n    \"other\": true,\n    \"comments\": false,\n    \"strings\": true\n  },\n  \"editor.tabCompletion\": \"on\",\n  \"editor.wordBasedSuggestions\": true,\n  \"editor.parameterHints.enabled\": true\n}\n\n\n\n2.2.3 Do-file 编辑器配置与运行方式设置\n\n文件关联配置\n确保 .do 和 .ado 文件与 Stata Enhanced 关联：\n{\n  \"files.associations\": {\n    \"*.do\": \"stata\",\n    \"*.ado\": \"stata\",\n    \"*.mata\": \"stata\"\n  }\n}\n\n\n代码片段（Snippets）\n创建 Stata 代码片段，提高编码效率。在 VS Code 中：\n\n按 Ctrl+Shift+P\n输入 “Configure User Snippets”\n选择 “stata.json”\n\n添加常用代码片段：\n{\n  \"Stata Header\": {\n    \"prefix\": \"header\",\n    \"body\": [\n      \"*-------------------------------------------------------------------------------\",\n      \"*  ${1:文件名}.do\",\n      \"*  目的: ${2:描述}\",\n      \"*  作者: ${3:你的名字}\",\n      \"*  日期: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}\",\n      \"*-------------------------------------------------------------------------------\",\n      \"\",\n      \"clear all\",\n      \"set more off\",\n      \"set linesize 120\",\n      \"\",\n      \"* 设置路径\",\n      \"global path \\\"${4:路径}\\\"\",\n      \"cd \\\"$path\\\"\",\n      \"\",\n      \"* 开始日志\",\n      \"log using \\\"${1:文件名}.log\\\", replace text\",\n      \"\",\n      \"$0\",\n      \"\",\n      \"* 关闭日志\",\n      \"log close\",\n      \"exit\",\n      \"*/\"\n    ],\n    \"description\": \"标准 Stata Do-file 头部\"\n  },\n\n  \"Regression Table\": {\n    \"prefix\": \"esttab\",\n    \"body\": [\n      \"estimates clear\",\n      \"regress ${1:y} ${2:x1 x2}\",\n      \"estimates store m1\",\n      \"\",\n      \"regress ${1:y} ${2:x1 x2} ${3:x3 x4}\",\n      \"estimates store m2\",\n      \"\",\n      \"esttab m1 m2 using \\\"${4:results}.tex\\\", replace\",\n      \"esttab m1 m2, se star(* 0.1 ** 0.05 *** 0.01)\"\n    ],\n    \"description\": \"esttab 回归表格模板\"\n  },\n\n  \"Graph Export\": {\n    \"prefix\": \"graphexport\",\n    \"body\": [\n      \"twoway (scatter ${1:y} ${2:x}) (lfit ${1:y} ${2:x}),\",\n      \"    title(\\\"${3:标题}\\\")\",\n      \"    subtitle(\\\"${4:副标题}\\\")\",\n      \"    xtitle(\\\"${5:X轴标签}\\\")\",\n      \"    ytitle(\\\"${6:Y轴标签}\\\")\",\n      \"    legend(label(1 \\\"数据点\\\") label(2 \\\"拟合线\\\"))\",\n      \"    scheme(s1mono)\",\n      \"\",\n      \"graph export \\\"${7:output}.png\\\", replace width(1200)\",\n      \"graph export \\\"${7:output}.pdf\\\", replace\"\n    ],\n    \"description\": \"图形导出模板\"\n  }\n}\n\n\n运行 Do-file 的方法\n\n运行整个文件：\n\n按 Ctrl+Shift+Enter 运行整个 do-file\n或右键选择 “Stata: Execute Do File”\n\n运行选中代码：\n\n选中代码片段\n按 Ctrl+Enter 运行选中部分\n\n运行当前行：\n\n光标放在某一行\n按 Ctrl+Enter 运行当前行\n\n\n配置快捷键：\n{\n  \"key\": \"ctrl+enter\",\n  \"command\": \"stata.runSelection\",\n  \"when\": \"editorLangId == stata\"\n},\n{\n  \"key\": \"ctrl+shift+enter\",\n  \"command\": \"stata.runAll\",\n  \"when\": \"editorLangId == stata\"\n},\n{\n  \"key\": \"ctrl+shift+c\",\n  \"command\": \"stata.showResult\",\n  \"when\": \"editorLangId == stata\"\n}\n\n\n编辑器配置推荐\n在 .vscode/settings.json 中创建项目级设置：\n{\n  // Stata 相关\n  \"stata.stataPath\": \"C:/Program Files/Stata18/StataMP-64.exe\",\n  \"stata.version\": 18,\n\n  // 编辑器\n  \"editor.tabSize\": 4,\n  \"editor.insertSpaces\": true,\n  \"editor.rulers\": [80, 100, 120],\n  \"editor.wordWrap\": \"on\",\n  \"editor.minimap.enabled\": true,\n\n  // 自动保存\n  \"files.autoSave\": \"afterDelay\",\n  \"files.autoSaveDelay\": 1000,\n\n  // 格式化\n  \"editor.formatOnSave\": false,\n  \"editor.formatOnPaste\": true,\n\n  // 括号配对\n  \"editor.guides.bracketPairs\": true,\n  \"editor.bracketPairColorization.enabled\": true,\n\n  // Git\n  \"git.enableSmartCommit\": true,\n  \"git.autofetch\": true\n}\n同时创建 .vscode/extensions.json 推荐扩展：\n{\n  \"recommendations\": [\n    \"kylebarron.stata-enhanced\",\n    \"yzhang.markdown-all-in-one\",\n    \"quarto.quarto\",\n    \"GitHub.copilot\",\n    \"eamodio.gitlens\"\n  ]\n}",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一讲：Stata 环境配置与 VS Code 集成</span>"
+    ]
+  },
+  {
+    "objectID": "01-stata-vscode.html#exercise-1",
+    "href": "01-stata-vscode.html#exercise-1",
+    "title": "2  第一讲：Stata 环境配置与 VS Code 集成",
+    "section": "2.3 练习",
+    "text": "2.3 练习\n\n在你的计算机上配置 Stata 的 profile.do 文件\n安装推荐的外部命令\n在 VS Code 中配置 Stata Enhanced 扩展\n创建你的第一个 do-file 并运行\n\n\n\n\n\n\n\n下一步\n\n\n\n完成本讲后，你已经搭建好了基础环境。接下来我们将学习如何高效地组织和运行 do-file，以及如何管理分析结果。",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一讲：Stata 环境配置与 VS Code 集成</span>"
+    ]
+  },
+  {
+    "objectID": "02-dofile-management.html",
+    "href": "02-dofile-management.html",
+    "title": "3  第二讲：Do-file 运行与结果管理",
+    "section": "",
+    "text": "3.1 Do-file 开发实践",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第二讲：Do-file 运行与结果管理</span>"
+    ]
+  },
+  {
+    "objectID": "02-dofile-management.html#dofile-practice",
+    "href": "02-dofile-management.html#dofile-practice",
+    "title": "3  第二讲：Do-file 运行与结果管理",
+    "section": "",
+    "text": "3.1.1 代码结构规范与注释标准\n\n推荐的 Do-file 结构\n一个结构良好的 do-file 应该包含以下部分：\n*-------------------------------------------------------------------------------\n*  project_name/analysis/main_analysis.do\n*  目的: 主要回归分析\n*  作者: 研究者姓名\n*  创建日期: 2026-06-24\n*  修改记录:\n*  - 2026-06-25: 添加稳健性检验\n*-------------------------------------------------------------------------------\n\n*-------------------------------------------------------------------------------\n*  1. 初始化\n*-------------------------------------------------------------------------------\n\nclear all\nset more off\nset linesize 120\nset varabbrev off\nset seed 20260624\n\n* 设置全局路径\nglobal root   \"D:/research/project_name\"\nglobal data   \"$root/data\"\nglobal raw    \"$data/raw\"\nglobal clean  \"$data/clean\"\nglobal results \"$root/results\"\nglobal logs   \"$results/logs\"\nglobal figures \"$results/figures\"\nglobal tables \"$results/tables\"\n\n* 创建目录（如不存在）\ncap mkdir \"$results\"\ncap mkdir \"$logs\"\ncap mkdir \"$figures\"\ncap mkdir \"$tables\"\n\n* 开始日志记录\nlog using \"$logs/main_analysis_$S_DATE.log\", replace text\n\n* 显示开始时间\ndisplay \"开始时间: $S_TIME $S_DATE\"\n\n*-------------------------------------------------------------------------------\n*  2. 加载数据\n*-------------------------------------------------------------------------------\n\nuse \"$clean/analysis_data.dta\", clear\n\n* 数据检查\nisid id\ncount\nsummarize\n\n*-------------------------------------------------------------------------------\n*  3. 变量处理\n*-------------------------------------------------------------------------------\n\n* 创建对数变量\ngen ln_price = log(price)\ngen ln_income = log(income)\n\n* 创建交互项\ngen treat_post = treat * post\n\n* 创建分组变量\negen age_group = cut(age), at(18,30,45,60,100) label\n\n*-------------------------------------------------------------------------------\n*  4. 描述性统计\n*-------------------------------------------------------------------------------\n\nestpost summarize price mpg weight length foreign if e(sample)\nesttab using \"$tables/summary_stats.tex\", replace ///\n    cells(\"mean(fmt(2)) sd(fmt(2)) min(fmt(2)) max(fmt(2)) count(fmt(0))\") ///\n    label nonumber nomtitle collabels(\"均值\" \"标准差\" \"最小值\" \"最大值\" \"观测数\")\n\n*-------------------------------------------------------------------------------\n*  5. 回归分析\n*-------------------------------------------------------------------------------\n\nestimates clear\n\n* 模型1: 基准回归\nregress price mpg weight i.rep78, robust\nestimates store m1\n\n* 模型2: 添加控制变量\nregress price mpg weight length i.rep78, robust\nestimates store m2\n\n* 模型3: 固定效应\nreghdfe price mpg weight length, absorb(rep78) vce(robust)\nestimates store m3\n\n* 输出回归表格\nesttab m1 m2 m3 using \"$tables/regression_results.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01) ///\n    label booktabs alignment(D{.}{.}{-1}) ///\n    keep(mpg weight length) ///\n    mtitles(\"模型1\" \"模型2\" \"模型3\") ///\n    addnotes(\"标准误在括号中\" \"*** p&lt;0.01, ** p&lt;0.05, * p&lt;0.1\")\n\n*-------------------------------------------------------------------------------\n*  6. 图形绘制\n*-------------------------------------------------------------------------------\n\n* 散点图加拟合线\ntwoway (scatter price weight, msize(small)) ///\n       (lfit price weight, lwidth(medthick)), ///\n    title(\"汽车价格与重量的关系\") ///\n    xtitle(\"重量 (磅)\") ///\n    ytitle(\"价格 (美元)\") ///\n    legend(label(1 \"数据点\") label(2 \"拟合线\")) ///\n    scheme(s1mono) ///\n    name(fig1, replace)\n\ngraph export \"$figures/scatter_price_weight.png\", replace width(1200)\ngraph export \"$figures/scatter_price_weight.pdf\", replace\n\n* 系数图\ncoefplot m1 m2 m3, keep(mpg weight) ///\n    xline(0, lcolor(red)) ///\n    title(\"系数估计\") ///\n    scheme(s1mono) ///\n    name(fig2, replace)\n\ngraph export \"$figures/coefficient_plot.png\", replace width(1200)\n\n*-------------------------------------------------------------------------------\n*  7. 保存结果\n*-------------------------------------------------------------------------------\n\n* 保存处理后的数据\nsave \"$clean/analysis_data_processed.dta\", replace\n\n* 保存估计结果（用于后续处理）\nestimates save \"$results/estimates.ster\", replace\n\n*-------------------------------------------------------------------------------\n*  8. 收尾\n*-------------------------------------------------------------------------------\n\n* 关闭日志\nlog close\n\n* 显示结束时间\ndisplay \"结束时间: $S_TIME $S_DATE\"\n\n* 退出（可选）\n* exit, clear STATA\n\n\n项目目录结构推荐\nproject_name/\n├── README.md                    # 项目说明\n├── LICENCE                      # 许可证\n├── data/                        # 数据目录\n│   ├── raw/                     # 原始数据（只读）\n│   ├── clean/                   # 清洗后的数据\n│   └── temp/                    # 临时数据\n├── code/                        # 代码目录\n│   ├── 01_data_cleaning.do      # 数据清洗\n│   ├── 02_descriptive_stats.do  # 描述性统计\n│   ├── 03_main_analysis.do      # 主要分析\n│   └── 04_robustness.do         # 稳健性检验\n├── results/                     # 结果目录\n│   ├── logs/                    # 日志文件\n│   ├── tables/                  # 表格\n│   ├── figures/                 # 图形\n│   └── intermediate/            # 中间结果\n├── docs/                        # 文档\n│   └── notes.md\n└── paper/                       # 论文\n    ├── manuscript.tex\n    └── supplement.tex\n\n\n注释标准\n*-------------------------------------------------------------------------------\n*  区块标题：使用这种格式分隔主要部分\n*-------------------------------------------------------------------------------\n\n* 单行注释：使用星号，简要说明\n\n// 也可以使用双斜杠，但在 Stata 中不常见\n\n/*\n   多行注释：\n   用于较长的说明文字\n   可以跨越多行\n*/\n\n// TODO: 标记待完成的任务\n// FIXME: 标记需要修复的问题\n// NOTE: 重要提示信息\n\n* 行内注释示例\nsysuse auto, clear          // 加载汽车数据集\nsummarize price mpg weight  // 查看关键变量统计\n\n* 复杂计算的解释\ngen double price_per_mpg = price / mpg  // 计算每英里油耗成本\nlabel var price_per_mpg \"每加仑英里价格\"\n\n\n\n3.1.2 log using 日志文件记录方法\n\n基础用法\n* 简单日志\nlog using \"analysis.log\", replace text\n\n* 带时间戳的日志\nlocal datetime: di %tdCCYY-NN-DD date(c(current_date), \"DMY\")\nlog using \"analysis_`datetime'.log\", replace text\n\n* 带时间和日期的完整日志\nlocal logname \"analysis_$S_DATE_$S_TIME.log\"\nlocal logname = subinstr(\"`logname'\", \":\", \"-\", .)\nlog using \"`logname'\", replace text\n\n\n日志管理技巧\n* 暂时关闭日志\nlog off\n\n* 重新开启日志\nlog on\n\n* 查看日志状态\nlog query\n\n* 关闭日志\nlog close\n\n\n封装的日志函数\n* 保存为 start_log.ado\ncapture program drop start_log\nprogram define start_log\n    syntax using/, [replace append]\n\n    * 创建日志目录\n    mata: dirs = pathsplit(\"`using'\")\n    mata: logdir = pathjoin(dirs[1..cols(dirs)-1])\n    cap mkdir \"`logdir'\"\n\n    * 添加时间戳\n    local datetime = subinstr(\"$S_DATE\", \" \", \"_\", .) + \"_\" + ///\n                    subinstr(\"$S_TIME\", \":\", \"-\", .)\n    local basename = subinstr(\"`using'\", \".log\", \"\", .)\n\n    log using \"`basename'_`datetime'.log\", `replace' `append' text\n\n    display \"日志已启动: `basename'_`datetime'.log\"\n    display \"开始时间: $S_TIME $S_DATE\"\nend\n\n* 使用方法\nstart_log using \"$logs/analysis\"\n\n\n\n3.1.3 结果输出路径规划与目录组织\n\n全局路径管理\n* 方法1: 使用 profile.do 设置全局根目录\n* 在 profile.do 中定义:\nglobal project_root \"D:/research/my_project\"\n\n* 在各个 do-file 中使用:\nglobal data    \"$project_root/data\"\nglobal results \"$project_root/results\"\n\n* 方法2: 使用相对路径（推荐用于Git项目）\n* 假设 do-file 在 code/ 目录下\ncd ..\nglobal root = c(pwd)\nglobal data   \"$root/data\"\nglobal results \"$root/results\"\ncd \"`c(pwd)'/code\"  // 返回原目录\n\n* 方法3: 使用 project 命令（如果安装）\n* ssc install project\nproject \"my_project\", do(\"code/analysis.do\")\n\n\n自动创建目录结构\n* 定义目录列表\nlocal dirs ///\n    \"$root/data/raw\" ///\n    \"$root/data/clean\" ///\n    \"$root/data/temp\" ///\n    \"$root/results/logs\" ///\n    \"$root/results/tables\" ///\n    \"$root/results/figures\" ///\n    \"$root/results/intermediate\"\n\n* 循环创建目录\nforeach dir of local dirs {\n    capture mkdir \"`dir'\"\n    if _rc == 0 {\n        display \"创建目录: `dir'\"\n    }\n}\n\n\n文件命名约定\n* 数据文件: [阶段]_[描述].dta\n* - raw_: 原始数据\n* - clean_: 清洗后数据\n* - analysis_: 分析用数据\n\nuse \"$data/raw/raw_survey.dta\", clear\nsave \"$data/clean/clean_survey.dta\", replace\nsave \"$data/clean/analysis_sample.dta\", replace\n\n* 结果文件: [类型]_[描述]_[日期].[后缀]\nesttab ... using \"$tables/reg_main_20260624.tex\", replace\ngraph export \"$figures/heterogeneity_urban.pdf\", replace\n\n* 日志文件: [do文件名]_[时间].log\nlog using \"$logs/03_main_analysis_2026-06-24_1430.log\", replace",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第二讲：Do-file 运行与结果管理</span>"
+    ]
+  },
+  {
+    "objectID": "02-dofile-management.html#debugging",
+    "href": "02-dofile-management.html#debugging",
+    "title": "3  第二讲：Do-file 运行与结果管理",
+    "section": "3.2 常见报错与调试技巧",
+    "text": "3.2 常见报错与调试技巧\n\n3.2.1 典型错误类型解析\n\n文件相关错误\n\n\n\n\n\n\n\n\n\n错误代码\n错误信息\n原因\n解决方法\n\n\n\n\nr(601)\nfile … not found\n文件路径错误\n检查文件路径和拼写\n\n\nr(602)\nfile … could not be opened\n权限问题\n关闭其他程序中打开的文件\n\n\nr(603)\nfile … cannot be modified\n文件只读\n去除文件只读属性\n\n\nr(608)\nfile … already exists\n文件已存在\n使用 replace 选项或改名\n\n\n\n* 安全的文件操作\ncapture confirm file \"$data/analysis.dta\"\nif _rc != 0 {\n    display as error \"错误: 数据文件不存在!\"\n    exit 601\n}\n\n* 检查目录是否存在\ncapture cd \"$results\"\nif _rc != 0 {\n    display as error \"错误: 结果目录不存在!\"\n    exit\n}\n\n\n变量相关错误\n\n\n\n\n\n\n\n\n\n错误代码\n错误信息\n原因\n解决方法\n\n\n\n\nr(111)\nvariable … not found\n变量名拼写错误\n检查变量名和数据\n\n\nr(109)\ntype mismatch\n变量类型错误\n使用 destring/tostring 转换\n\n\nr(101)\nvariable … already defined\n变量重复定义\n使用 capture 或先 drop\n\n\nr(198)\ninvalid syntax\n语法错误\n检查命令语法\n\n\n\n* 安全的变量生成\ncapture confirm variable price_per_mpg\nif _rc == 0 {\n    drop price_per_mpg\n}\ngen price_per_mpg = price / mpg\n\n* 或者使用 capture\ncapture drop price_per_mpg\ngen price_per_mpg = price / mpg\n\n* 检查变量类型\ndescribe price\nif r(type) == \"str\" {\n    destring price, replace\n}\n\n\n数据相关错误\n\n\n\n\n\n\n\n\n\n错误代码\n错误信息\n原因\n解决方法\n\n\n\n\nr(459)\nno observations\n数据为空\n检查数据加载\n\n\nr(480)\ninvalid observation number\n行号越界\n检查观测数\n\n\nr(2000)\nno; data in memory would be lost\n未保存数据\n使用 clear, force 或先保存\n\n\nr(198)\ninvalid name\n名称不合法\n使用有效名称\n\n\n\n* 安全的数据操作\ncapture assert _N &gt; 0\nif _rc != 0 {\n    display as error \"错误: 数据为空!\"\n    exit 459\n}\n\n* 检查缺失值\ncount if missing(price, mpg, weight)\nif r(N) &gt; 0 {\n    display as warning \"警告: 存在 \" r(N) \" 个缺失值\"\n}\n\n* 保存前检查\nconfirm variable price mpg weight\nsave \"$data/analysis.dta\", replace\n\n\n\n3.2.2 调试策略与问题定位方法\n\n逐步调试法\n* 方法1: 设置断点\n* 在关键位置添加 pause\ndisplay \"检查点1: 数据已加载\"\npause\n\n* 方法2: 分段执行\n* 将 do-file 分成多个部分，逐个测试\n\n* 方法3: 使用 trace\nset trace on\nset tracedepth 2\n* 执行问题代码...\nset trace off\n\n\n调试工具函数\n* 保存为 debug_utils.ado\n\n* 显示变量信息\ncapture program drop var_info\nprogram define var_info\n    syntax varlist\n\n    foreach var of varlist `varlist' {\n        display as text \"--- `var' ---\"\n        capture describe `var'\n        if _rc == 0 {\n            local type: type `var'\n            local label: variable label `var'\n            local n_miss = missing(`var')\n\n            display \"  类型: `type'\"\n            display \"  标签: `label'\"\n            display \"  缺失: `n_miss'\"\n            summarize `var'\n        }\n        display \"\"\n    }\nend\n\n* 使用方法: var_info price mpg weight\n\n* 检查数据完整性\ncapture program drop data_check\nprogram define data_check\n    syntax [varlist]\n\n    display \"=== 数据完整性检查 ===\"\n    display \"观测数: \" _N\n    display \"变量数: \" c(k)\n    display \"\"\n\n    if \"`varlist'\" == \"\" {\n        local varlist _all\n    }\n\n    foreach var of varlist `varlist' {\n        local n_miss = missing(`var')\n        local pct_miss = `n_miss' / _N * 100\n\n        if `n_miss' &gt; 0 {\n            display as error \"`var': `n_miss' 缺失 (\" %3.1f `pct_miss' \"%)\"\n        }\n        else {\n            display as text \"`var': 完整\"\n        }\n    }\nend\n\n\n使用 capture 和 assert 进行防御性编程\n* 示例: 稳健的数据分析流程\n\n* 1. 设置参数\nlocal depvar price\nlocal covariates mpg weight length\n\n* 2. 检查变量存在\nforeach var of varlist `depvar' `covariates' {\n    capture confirm variable `var'\n    if _rc != 0 {\n        display as error \"错误: 变量 `var' 不存在!\"\n        exit 111\n    }\n}\n\n* 3. 检查样本量\nregress `depvar' `covariates'\ncapture assert e(N) &gt; 50\nif _rc != 0 {\n    display as error \"错误: 样本量不足!\"\n    exit 459\n}\n\n* 4. 保存结果\nestimates store main_model\ndisplay \"分析完成! 样本量: \" e(N)\n\n\n\n3.2.3 可复现性研究的最佳实践\n\n版本控制与 Git\n创建 .gitignore 文件：\n# Stata 临时文件\n*.log\n*.smcl\n*.dta\n*.gph\n*.ster\n\n# 结果文件\nresults/\nlogs/\nfigures/\ntables/\n\n# 系统文件\n.DS_Store\nThumbs.db\n初始化 Git 仓库：\n# 在项目根目录执行\ngit init\ngit add README.md\ngit add code/*.do\ngit add .gitignore\ngit commit -m \"Initial commit\"\n\n\n包版本管理\n* 记录已安装包的版本\ncapture program drop save_packages\nprogram define save_packages\n    syntax using/\n\n    tempname fh\n    file open `fh' using \"`using'\", write replace\n\n    file write `fh' \"* Stata 包列表 - 生成时间: $S_DATE $S_TIME\" _n\n    file write `fh' \"* 使用方法: do install_packages.do\" _n _n\n\n    * 获取所有用户安装的包\n    local packages: dir \"`c(sysdir_plus)'\" dirs \"*\", respectcase\n\n    foreach pkg of local packages {\n        local pkgname = subinstr(\"`pkg'\", \"+\", \" \", .)\n        file write `fh' `\"\"\"ssc install `pkgname', replace\"\"\"' _n\n    }\n\n    file close `fh'\n    display \"包列表已保存到: `using'\"\nend\n\n* 使用方法\nsave_packages using \"install_packages.do\"\n\n\n完整的可复现工作流示例\n* master.do - 一键运行完整分析\n*-------------------------------------------------------------------------------\n\n* 记录开始时间\nlocal start_time = c(current_time)\nlocal start_date = c(current_date)\ndisplay \"分析开始: `start_date' `start_time'\"\n\n* 设置随机种子（确保可复现）\nset seed 20260624\n\n* 记录 Stata 版本\ndisplay \"Stata 版本: `c(stata_version)'\"\ndisplay \"操作系统: `c(os)' `c(osdtl)'\"\n\n* 检查必需的包\nlocal required_packages ftools gtools reghdfe estout coefplot\nforeach pkg of local required_packages {\n    capture ssc describe `pkg'\n    if _rc != 0 {\n        display as error \"需要安装: `pkg'\"\n        ssc install `pkg', replace\n    }\n}\n\n* 运行各分析步骤\ndo \"code/01_data_cleaning.do\"\ndo \"code/02_descriptive_stats.do\"\ndo \"code/03_main_analysis.do\"\ndo \"code/04_robustness.do\"\n\n* 生成最终报告\n* do \"code/make_report.do\"\n\n* 计算运行时间\nlocal end_time = c(current_time)\ndisplay \"分析完成: `end_date' `end_time'\"\ndisplay \"运行结束\"\n\n\nMakefile 示例（高级用户）\n创建 Makefile：\n# Stata 分析工作流 Makefile\n\nSTATA = \"C:/Program Files/Stata18/StataMP-64.exe\"\nDOFLAGS = -e do\n\n.PHONY: all clean data analysis figures\n\nall: analysis figures\n\ndata: data/clean/analysis_data.dta\n\ndata/clean/analysis_data.dta: code/01_data_cleaning.do data/raw/raw_data.dta\n    $(STATA) $(DOFLAGS) $&lt;\n\nanalysis: results/tables/regression_results.tex\n\nresults/tables/regression_results.tex: code/03_main_analysis.do data/clean/analysis_data.dta\n    $(STATA) $(DOFLAGS) $&lt;\n\nfigures: results/figures/main_figure.pdf\n\nresults/figures/main_figure.pdf: code/03_main_analysis.do\n    $(STATA) $(DOFLAGS) $&lt;\n\nclean:\n    rm -f results/logs/*.log\n    rm -f data/temp/*.dta\n\ncleanall: clean\n    rm -f data/clean/*.dta\n    rm -f results/tables/*.tex\n    rm -f results/figures/*.pdf\n使用方法：\n# 运行所有分析\nmake all\n\n# 只重新生成数据\nmake data\n\n# 清理临时文件\nmake clean",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第二讲：Do-file 运行与结果管理</span>"
+    ]
+  },
+  {
+    "objectID": "02-dofile-management.html#exercise-2",
+    "href": "02-dofile-management.html#exercise-2",
+    "title": "3  第二讲：Do-file 运行与结果管理",
+    "section": "3.3 练习",
+    "text": "3.3 练习\n\n按照推荐结构组织你的研究项目目录\n为你的 do-file 添加规范的注释和日志记录\n实现一个安全的文件加载和变量检查流程\n设置基本的 Git 版本控制\n\n\n\n\n\n\n\n下一步\n\n\n\n掌握了规范的 do-file 开发和结果管理后，下一讲我们将学习如何使用 Claude Code 和 Stata MCP 实现 AI 与 Stata 的深度协作。",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>第二讲：Do-file 运行与结果管理</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html",
+    "href": "03-claude-stata-mcp.html",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "",
+    "text": "4.1 Stata MCP 配置与原理",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#stata-mcp-setup",
+    "href": "03-claude-stata-mcp.html#stata-mcp-setup",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "",
+    "text": "4.1.1 Model Context Protocol 简介\n\n什么是 MCP？\n模型上下文协议 (Model Context Protocol, MCP) 是 Anthropic 开发的开放式协议，用于在 AI 助手和外部工具之间建立标准化连接。它让 Claude 能够：\n\n直接访问本地文件系统\n读取和写入文件\n执行命令行工具\n与数据库交互\n调用特定领域的 API\n\n\n\n传统工作流 vs MCP 工作流\n传统方式：复制粘贴\n1. 在 Stata 中查看数据\n2. 复制结果到 Claude\n3. Claude 给出代码\n4. 复制代码回 Stata\n5. 运行代码查看结果\n6. 重复...\nMCP 方式：直接执行\n1. Claude 通过 MCP 直接连接 Stata\n2. Claude 读取数据、分析结果\n3. Claude 直接在 Stata 中执行代码\n4. 实时获取结果并迭代分析\n\n\n\n4.1.2 从”复制粘贴”到”直接执行”的工作流转变\n\n传统工作流的痛点\nflowchart TD\n    A[Stata 分析] --&gt; B{遇到问题}\n    B --&gt;|复制错误| C[打开 Claude]\n    C --&gt;|粘贴问题| D[等待回复]\n    D --&gt;|获取代码| E[复制回 Stata]\n    E --&gt; F[运行代码]\n    F --&gt; G{是否解决?}\n    G --&gt;|否| B\n    G --&gt;|是| H[继续分析]\n\n\nMCP 工作流的优势\nflowchart TD\n    A[开始分析] --&gt; B[Claude + Stata MCP]\n    B --&gt; C{Claude 直接操作}\n    C --&gt;|读取数据| D[分析问题]\n    C --&gt;|执行代码| E[获取结果]\n    D --&gt; F[提供解决方案]\n    E --&gt; F\n    F --&gt; G{满意?}\n    G --&gt;|是| H[完成]\n    G --&gt;|否| C\n\n\n\n4.1.3 环境配置与连接演示\n\n前置要求\n\nStata 17 或更高版本\n\n支持 stata_cmd 接口\n推荐 Stata 18 MP\n\nVS Code\n\n最新版本\nClaude Code 扩展\n\nClaude Code\n\n安装 Claude Code CLI\n或使用 VS Code Claude Code 扩展\n\n\n\n\n配置步骤\n步骤1：安装 Stata MCP 服务器\n# 使用 npm 安装（需要 Node.js）\nnpm install -g @anthropic-ai/stata-mcp-server\n\n# 或从源码安装\ngit clone https://github.com/anthropic/stata-mcp.git\ncd stata-mcp\nnpm install\nnpm link\n步骤2：配置 Claude Code\n在 VS Code 设置中添加 MCP 配置：\n{\n  \"mcp.servers\": {\n    \"stata\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@anthropic-ai/stata-mcp-server\"\n      ],\n      \"env\": {\n        \"STATA_PATH\": \"C:/Program Files/Stata18/StataMP-64.exe\",\n        \"STATA_WORKING_DIR\": \"D:/research/project\"\n      }\n    }\n  }\n}\nmacOS 配置：\n{\n  \"mcp.servers\": {\n    \"stata\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@anthropic-ai/stata-mcp-server\"],\n      \"env\": {\n        \"STATA_PATH\": \"/Applications/Stata/StataMP.app/Contents/MacOS/StataMP\",\n        \"STATA_WORKING_DIR\": \"/Users/username/research/project\"\n      }\n    }\n  }\n}\nLinux 配置：\n{\n  \"mcp.servers\": {\n    \"stata\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@anthropic-ai/stata-mcp-server\"],\n      \"env\": {\n        \"STATA_PATH\": \"/usr/local/stata18/stata-mp\",\n        \"STATA_WORKING_DIR\": \"/home/username/research/project\"\n      }\n    }\n  }\n}\n步骤3：验证连接\n在 Claude Code 中输入：\n测试 Stata MCP 连接\n成功后会显示：\n✓ Stata MCP 已连接\nStata 版本: 18.0\n工作目录: D:/research/project\n\n\n配置文件详解\n创建 stata-mcp-config.json：\n{\n  \"stata\": {\n    \"path\": \"C:/Program Files/Stata18/StataMP-64.exe\",\n    \"workingDir\": \"D:/research/project\",\n    \"timeout\": 30000,\n    \"autoSave\": true,\n    \"saveHistory\": true\n  },\n  \"mcp\": {\n    \"capabilities\": [\n      \"tools\",\n      \"resources\",\n      \"prompts\"\n    ]\n  },\n  \"tools\": {\n    \"stata_run\": {\n      \"enabled\": true,\n      \"description\": \"运行 Stata 代码\"\n    },\n    \"stata_run_file\": {\n      \"enabled\": true,\n      \"description\": \"运行 Stata do-file\"\n    },\n    \"stata_browse\": {\n      \"enabled\": true,\n      \"description\": \"浏览数据\"\n    },\n    \"stata_describe\": {\n      \"enabled\": true,\n      \"description\": \"描述数据结构\"\n    },\n    \"stata_summarize\": {\n      \"enabled\": true,\n      \"description\": \"统计摘要\"\n    }\n  }\n}",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#ai-research",
+    "href": "03-claude-stata-mcp.html#ai-research",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.2 AI 辅助研究实战",
+    "text": "4.2 AI 辅助研究实战\n\n4.2.1 自然语言驱动的 Stata 代码生成\n\n基础示例\n场景1：数据加载和基本检查\n用户: 加载 auto 数据集并查看基本信息\nClaude 通过 MCP 执行：\nsysuse auto, clear\ndescribe\nsummarize\n获取结果后，Claude 会分析并继续：\n已加载 auto 数据集，包含74个观测和12个变量。主要变量包括：\n- price: 汽车价格（均值6165美元）\n- mpg: 每加仑英里数（均值21.3）\n- weight: 重量（均值3019磅）\n\n需要我进行进一步分析吗？\n场景2：回归分析\n用户: 用 price 作为因变量，mpg weight 和 foreign 作为自变量做回归，\n并输出结果表格\nClaude 执行：\nsysuse auto, clear\n\n* 基准回归\nregress price mpg weight i.foreign, robust\nestimates store m1\n\n* 输出表格\nesttab m1, se star(* 0.1 ** 0.05 *** 0.01)\n\n\n进阶示例：完整分析流程\n用户请求：\n我有一个关于教育回报率的数据集，变量包括：\n- lwage: 对数工资\n- educ: 受教育年数\n- exper: 工作经验\n- tenure: 在现职年数\n- black: 是否黑人\n- south: 是否居住在南部\n\n请帮我做一个完整的分析，包括：\n1. 描述性统计\n2. 基准回归\n3. 异质性分析\n4. 稳健性检验\nClaude 的分析流程：\n* 步骤1: 加载和检查数据\nuse \"$data/wage2.dta\", clear\ndescribe\nsummarize\n\n* 步骤2: 描述性统计表格\nestpost summarize lwage educ exper tenure black south\nesttab using \"$tables/summary.tex\", replace ///\n    cells(\"mean sd min max count\") label\n\n* 步骤3: 基准回归\nestimates clear\nregress lwage educ exper tenure black south, robust\nestimates store base\n\n* 步骤4: 异质性分析 - 按地区分组\nregress lwage educ exper tenure black if south == 0, robust\nestimates store north\n\nregress lwage educ exper tenure black if south == 1, robust\nestimates store south_region\n\n* 步骤5: 稳健性检验 - 加入经验平方项\ngen exper2 = exper^2\nregress lwage educ exper exper2 tenure black south, robust\nestimates store robust\n\n* 步骤6: 输出所有结果\nesttab base north south_region robust ///\n    using \"$tables/main_results.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01) ///\n    label mtitles(\"基准\" \"北方\" \"南方\" \"稳健性\")\nClaude 继续分析：\n分析完成！主要发现：\n\n1. 教育回报率显著为正，约 8%\n2. 工作经验和任期也有正回报\n3. 存在显著的地区异质性\n4. 结果在加入二次项后仍然稳健\n\n需要我进一步解释结果或进行其他检验吗？\n\n\n\n4.2.2 AI 代码解释与逻辑拆解\n\n理解复杂计量方法\n示例：理解 DID 模型\n用户: 请解释以下 DID 代码的逻辑，并用简单的语言说明\n\ngen treat = (country == \"treatment\")\ngen post = (year &gt;= 2020)\ngen did = treat * post\n\nreg outcome treat post did, robust\nClaude 的解释：\n这段代码实现了双重差分（DID）模型，逻辑如下：\n\n1. **分组变量 (`treat`)**\n   - 处理组 = 1（政策实施地区）\n   - 对照组 = 0（其他地区）\n\n2. **时间变量 (`post`)**\n   - 政策后 = 1（2020年及以后）\n   - 政策前 = 0（2020年以前）\n\n3. **交互项 (`did`)**\n   - 这是关键变量！系数表示政策效果\n   - 即：处理组在政策后的变化 减去 对照组的变化\n\n4. **回归方程**\n   outcome = β₀ + β₁treat + β₂post + β₃did + ε\n   - β₁: 组间固定差异\n   - β₂: 时间趋势\n   - β₃: DID 估计量（政策效果）✭\n\n用通俗的话说：我们比较处理组在政策前后的变化，\n同时减去对照组在同一时期的变化，这样就能分离出\n政策的净效果，排除其他同时期发生的因素影响。\n\n需要我生成一个可视化的例子吗？\n\n\n代码优化建议\n原代码：\nreg y x1 x2\npredict yhat\ngen resid = y - yhat\ntwoway (scatter resid x1)\nClaude 的优化建议：\n代码可以优化为：\n\nstata\nreg y x1 x2\nrvfplot, name(resid_x1, replace)\ngraph export \"$figures/residual_plot.png\", replace\n\n改进点：\n1. 使用 `rvfplot` 直接绘制残差图，更简洁\n2. 添加图形名称便于管理\n3. 直接导出图形保存结果\n\n另外，建议考虑：\n- 检查异方差：`estat hettest`\n- 看其他诊断图：`avplot`, `cprplot`\n- 考虑稳健标准误：`reg y x1 x2, robust`\n\n\n\n4.2.3 代码改写与优化建议\n\n示例1：从低效到高效\n原始代码：\nuse data.dta, clear\n\ngen lnprice = log(price)\ngen lnincome = log(income)\n\nreg lnprice lnincome if year == 2010\nestimates store m1\n\nreg lnprice lnincome if year == 2011\nestimates store m2\n\nreg lnprice lnincome if year == 2012\nestimates store m3\n\nesttab m1 m2 m3 using results.tex, replace\nClaude 优化后：\nuse data.dta, clear\n\n* 生成变量\ngen lnprice = log(price)\ngen lnincome = log(income)\n\n* 使用循环简化代码\nestimates clear\nforvalues year = 2010/2012 {\n    reg lnprice lnincome if year == `year', robust\n    estimates store m`year'\n}\n\n* 输出带年份标签的表格\nesttab m2010 m2011 m2012 using \"$tables/yearly_reg.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01) ///\n    label mtitles(\"2010\" \"2011\" \"2012\") ///\n    addnotes(\"稳健标准误在括号中\")\n\n* 或者更高效的方法：使用交互项\nreg lnprice lnincome i.year i.year#c.lnincome, robust\ntestparm i.year#c.lnincome\n\n\n示例2：添加错误处理\nClaude 生成的健壮代码：\n*-------------------------------------------------------------------------------\n*  安全的数据分析脚本\n*-------------------------------------------------------------------------------\n\ncapture log close\nset more off\n\n* 参数设置\nlocal datafile \"$data/analysis_data.dta\"\nlocal depvar lwage\nlocal indvars educ exper tenure\n\n* 检查文件\ncapture confirm file \"`datafile'\"\nif _rc != 0 {\n    display as error \"错误: 数据文件不存在！\"\n    exit 601\n}\n\n* 加载数据\nuse \"`datafile'\", clear\n\n* 检查变量\nforeach var of varlist `depvar' `indvars' {\n    capture confirm variable `var'\n    if _rc != 0 {\n        display as error \"错误: 变量 `var' 不存在！\"\n        exit 111\n    }\n}\n\n* 检查缺失值\nforeach var of varlist `depvar' `indvars' {\n    count if missing(`var')\n    if r(N) &gt; 0 {\n        display as warning \"警告: `var' 有 \" r(N) \" 个缺失值\"\n    }\n}\n\n* 回归分析\nregress `depvar' `indvars', robust\n\n* 检查样本量\nif e(N) &lt; 50 {\n    display as error \"错误: 样本量不足！\"\n    exit 459\n}\n\n* 保存结果\nestimates store main_model\nesttab main_model using \"$tables/results.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01)\n\ndisplay \"分析成功完成！\"\n\n\n\n4.2.4 研究思路探索与方法讨论\n\n场景1：方法选择咨询\n用户: 我有一个面板数据，想研究最低工资对就业的影响，\n应该用什么方法？\nClaude 的建议：\n对于最低工资与就业的研究，有几种常用方法：\n\n## 1. 双向固定效应（TWFE）\n```stata\nxtset state year\nxtreg employment min_wage i.year, fe vce(cluster state)\n优点：经典方法，易实现 缺点：可能受处理效应异质性影响",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#callaway-santanna-2021",
+    "href": "03-claude-stata-mcp.html#callaway-santanna-2021",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.3 2. Callaway & Sant’Anna (2021)",
+    "text": "4.3 2. Callaway & Sant’Anna (2021)\n* ssc install csdid\ncsdid employment, ivar(state) time(year) gvar(first_treat)\n优点：处理异质性处理效应 缺点：计算较复杂",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#didm-de-chaisemartin-dhaultfoeuille",
+    "href": "03-claude-stata-mcp.html#didm-de-chaisemartin-dhaultfoeuille",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.4 3. DIDM (de Chaisemartin & D’Haultfoeuille)",
+    "text": "4.4 3. DIDM (de Chaisemartin & D’Haultfoeuille)\n* ssc install did_multiplegt\ndid_multiplegt employment state year first_treat\n优点：考虑处理时间变化 缺点：需要安装外部命令",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#建议步骤",
+    "href": "03-claude-stata-mcp.html#建议步骤",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.5 建议步骤：",
+    "text": "4.5 建议步骤：\n\n先画事件研究图看平行趋势\n用基准 TWFE 做初步分析\n用 csdid 或 did_multiplegt 做稳健性检验\n展示多种方法结果的一致性\n\n需要我帮你实现这些分析吗？\n\n#### 场景2：研究设计反馈\n\n用户: 我准备这样分析这个问题，帮我看看有什么问题：\n\n用 OLS 回归 Y = βX + ε\n如果显著就得出结论\n再加入一些控制变量看看结果是否变化\n\n\n**Claude 的反馈：**\n\n你的设计有几个需要改进的地方：",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#潜在问题",
+    "href": "03-claude-stata-mcp.html#潜在问题",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.6 潜在问题：",
+    "text": "4.6 潜在问题：\n\n遗漏变量偏误\n\n只加控制变量不够，需要考虑选择哪些控制变量\n建议画因果图（DAG）确定需要控制的变量\n\n缺乏识别策略\n\nOLS 可能存在内生性\n需要考虑：DID、IV、RDD 等识别方法\n\n稳健性不足\n\n应该报告多种设定的结果\n做安慰剂检验、子样本分析等",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#改进建议",
+    "href": "03-claude-stata-mcp.html#改进建议",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.7 改进建议：",
+    "text": "4.7 改进建议：\n* 1. 先做描述性统计和相关性分析\nestpost correlate y x controls\nesttab using \"$tables/corr.tex\", replace\n\n* 2. 逐步加入控制变量\nestimates clear\nreg y x, robust\nestimates store m1\nreg y x controls1, robust\nestimates store m2\nreg y x controls1 controls2, robust\nestimates store m3\n\n* 3. 考虑识别策略\n* DID: reg y i.treat i.post i.treat#i.post controls, robust\n* IV: ivregress 2sls y (x = z) controls, robust\n\n* 4. 稳健性检验\n* 子样本、安慰剂、不同标准误设定",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#complete-example",
+    "href": "03-claude-stata-mcp.html#complete-example",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.8 完整实战案例",
+    "text": "4.8 完整实战案例\n\n4.8.1 案例：用 AI 辅助完成一个完整的实证项目\n\n步骤1：项目初始化\n用户: 我想研究国际贸易对经济增长的影响，数据有：\n- 国家面板数据（1990-2020）\n- 变量: gdp, trade, investment, education, population\n\n帮我搭建项目框架\nClaude 创建项目结构：\ntrade_growth/\n├── data/\n│   ├── raw/\n│   │   └── penn_world_table.dta\n│   └── clean/\n├── code/\n│   ├── 01_setup.do\n│   ├── 02_data_cleaning.do\n│   ├── 03_descriptive.do\n│   ├── 04_main_analysis.do\n│   └── 05_robustness.do\n├── results/\n│   ├── logs/\n│   ├── tables/\n│   └── figures/\n└── _quarto.yml\n\n\n步骤2：数据清洗\nClaude 生成并执行：\n* code/02_data_cleaning.do\n*-------------------------------------------------------------------------------\n\nuse \"$data/raw/penn_world_table.dta\", clear\n\n* 选择变量\nkeep country year gdp trade investment education population\n\n* 生成对数变量\nforeach var in gdp trade investment education population {\n    gen ln_`var' = log(`var')\n    label var ln_`var' \"对数`var'\"\n}\n\n* 生成增长率\nbysort country (year): gen gdp_growth = (ln_gdp - L.ln_gdp) * 100\nlabel var gdp_growth \"GDP增长率(%)\"\n\n* 生成滞后项\nbysort country (year): gen lag_trade = L.trade\nbysort country (year): gen lag_investment = L.investment\n\n* 生成人均变量\ngen gdp_per_capita = gdp / population\ngen ln_gdp_pc = log(gdp_per_capita)\n\n* 平衡面板\nxtset country year\nxtbalance, range(1990 2020)\n\n* 保存\nsave \"$data/clean/analysis_data.dta\", replace\n\ndisplay \"数据清洗完成！\"\ncount\nsummarize\n\n\n步骤3：描述性分析\n用户: 帮我做一些描述性统计和图表\nClaude 执行：\n* code/03_descriptive.do\n*-------------------------------------------------------------------------------\n\nuse \"$data/clean/analysis_data.dta\", clear\n\n* 描述性统计表格\nestpost summarize gdp_growth trade investment education\nesttab using \"$tables/summary_stats.tex\", replace ///\n    cells(\"mean sd p25 p50 p75 count\") label\n\n* 相关系数矩阵\nestpost correlate gdp_growth trade investment education\nesttab using \"$tables/corr_matrix.tex\", replace ///\n    label notitle noobs\n\n* 时间趋势图\npreserve\ncollapse (mean) gdp_growth trade, by(year)\ntwoway (line gdp_growth year) (line trade year, yaxis(2)), ///\n    title(\"GDP增长与贸易时间趋势\") ///\n    ytitle(\"GDP增长率(%)\", axis(1)) ///\n    ytitle(\"贸易额\", axis(2)) ///\n    legend(label(1 \"GDP增长\") label(2 \"贸易\")) ///\n    scheme(s1mono)\ngraph export \"$figures/time_trend.pdf\", replace\nrestore\n\n* 散点图\ntwoway (scatter gdp_growth trade, msize(tiny)) ///\n       (lfit gdp_growth trade), ///\n    title(\"贸易与GDP增长的关系\") ///\n    xtitle(\"贸易额\") ytitle(\"GDP增长率\")\ngraph export \"$figures/scatter_trade_growth.pdf\", replace\n\n\n步骤4：主要分析\n用户: 现在做主要的回归分析，用固定效应模型\nClaude 执行：\n* code/04_main_analysis.do\n*-------------------------------------------------------------------------------\n\nuse \"$data/clean/analysis_data.dta\", clear\n\nxtset country year\n\nestimates clear\n\n* 模型1: 混合 OLS\nreg gdp_growth trade ln_investment ln_education, robust\nestimates store ols\n\n* 模型2: 双向固定效应\nxtreg gdp_growth trade ln_investment ln_education, fe robust\nestimates store fe\n\n* 模型3: 加入年份固定效应\nxtreg gdp_growth trade ln_investment ln_education i.year, fe robust\nestimates store fe_year\n\n* 模型4: 用滞后贸易\nxtreg gdp_growth lag_trade ln_investment ln_education i.year, fe robust\nestimates store fe_lag\n\n* 输出表格\nesttab ols fe fe_year fe_lag using \"$tables/main_regressions.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01) ///\n    label booktabs ///\n    keep(trade lag_trade ln_investment ln_education) ///\n    mtitles(\"OLS\" \"FE\" \"FE+Year\" \"FE+Lag\") ///\n    indicate(\"年份固定效应 = *.year\" \"国家固定效应 = _cons\") ///\n    addnotes(\"标准误在括号中\" \"*** p&lt;0.01, ** p&lt;0.05, * p&lt;0.1\")\n\n* 显示结果\nesttab ols fe fe_year fe_lag, se star(* 0.1 ** 0.05 *** 0.01) ///\n    keep(trade lag_trade ln_investment ln_education)\n\n\n步骤5：稳健性检验\n用户: 做一些稳健性检验来验证结果\nClaude 执行：\n* code/05_robustness.do\n*-------------------------------------------------------------------------------\n\nuse \"$data/clean/analysis_data.dta\", clear\nxtset country year\n\nestimates clear\n\n* 1. 不同标准误设定\nxtreg gdp_growth trade ln_investment ln_education i.year, fe\nestimates store se_robust\n\nxtreg gdp_growth trade ln_investment ln_education i.year, fe vce(cluster country)\nestimates store se_cluster\n\n* 2. 子样本分析\nxtreg gdp_growth trade ln_investment ln_education i.year if year &gt;= 2000, fe robust\nestimates store sub_recent\n\nxtreg gdp_growth trade ln_investment ln_education i.year if gdp_per_capita &gt; 10000, fe robust\nestimates store sub_rich\n\n* 3. 异质性 - 按收入水平\nxtreg gdp_growth c.trade##i.income_group ln_investment ln_education i.year, fe robust\nestimates store hetero_income\n\n* 4. 动态面板（系统GMM）\n* ssc install xtabond2\nxtabond2 gdp_growth L.gdp_growth trade ln_investment ln_education i.year, ///\n    gmm(L.gdp_growth trade, lag(2 4)) iv(ln_investment ln_education i.year) ///\n    twostep robust small\nestimates store gmm\n\n* 输出稳健性检验结果\nesttab se_robust se_cluster sub_recent sub_rich ///\n    using \"$tables/robustness.tex\", replace ///\n    se star(* 0.1 ** 0.05 *** 0.01) ///\n    keep(trade) label ///\n    mtitles(\"Robust\" \"Cluster\" \"Recent\" \"Rich\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#prompt-tips",
+    "href": "03-claude-stata-mcp.html#prompt-tips",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.9 提示词技巧与最佳实践",
+    "text": "4.9 提示词技巧与最佳实践\n\n4.9.1 有效的提示词结构\n[上下文] + [任务] + [输出要求]\n\n示例1：代码生成\n好的提示词：\n\"我在研究最低工资对就业的影响，使用美国州级面板数据。\n请帮我写一个事件研究图的代码，包括平行趋势检验。\n使用 Stata 的 coefplot 画图，导出为 PDF。\"\n\n\n示例2：问题诊断\n好的提示词：\n\"我的回归得到了这个错误：'convergence not achieved'。\n我在做 logit 回归，变量有20个，样本量500。\n可能是什么原因？如何解决？\"\n\n\n\n4.9.2 提示词模板库\n\n模板1：数据分析请求\n我有[数据类型]，变量包括[变量列表]。我想研究[研究问题]。\n\n请帮我：\n1. 首先进行描述性统计\n2. 然后做基准回归分析\n3. 进行适当的稳健性检验\n4. 输出高质量的表格和图形\n\n使用 Stata，遵循可复现研究的最佳实践。\n\n\n模板2：代码审查请求\n请帮我审查以下 Stata 代码，检查：\n1. 代码是否有错误\n2. 是否有可以优化的地方\n3. 是否符合计量经济学最佳实践\n4. 结果解释是否正确\n\n[粘贴代码]\n\n\n模板3：方法选择咨询\n我想研究[研究问题]，数据是[数据类型]。\n我考虑过[可选方法1]和[可选方法2]。\n\n你建议用什么方法？请比较不同方法的优缺点，\n并给出一个推荐的分析流程。",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "03-claude-stata-mcp.html#exercise-3",
+    "href": "03-claude-stata-mcp.html#exercise-3",
+    "title": "4  第三讲：Claude Code + Stata MCP 深度协作",
+    "section": "4.10 练习",
+    "text": "4.10 练习\n\n配置 Stata MCP 并连接 Claude Code\n用自然语言让 Claude 帮你完成一个简单的回归分析\n请 Claude 解释一个复杂的计量方法（如合成控制法）\n让 Claude 帮你优化一段现有的 Stata 代码\n\n\n\n\n\n\n\n总结\n\n\n\n通过 Claude Code 和 Stata MCP，我们实现了： - 从”复制粘贴”到”直接执行”的工作流升级 - 自然语言驱动的数据分析 - AI 辅助的代码生成和优化 - 完整的实证研究支持\n这标志着计量经济学研究进入了 AI 辅助的新时代！",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>第三讲：Claude Code + Stata MCP 深度协作</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "5  参考文献",
+    "section": "",
+    "text": "5.1 推荐教材与读物",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#推荐教材与读物",
+    "href": "references.html#推荐教材与读物",
+    "title": "5  参考文献",
+    "section": "",
+    "text": "5.1.1 Stata 编程基础\n\nBaum, C. F. (2016). An Introduction to Modern Econometrics Using Stata. Stata Press.\nCameron, A. C., & Trivedi, P. K. (2010). Microeconometrics Using Stata. Stata Press.\nGould, W. W., Pitblado, J., & Poi, B. (2018). Stata User’s Guide. Stata Press.\n\n\n\n5.1.2 可复现研究与数据科学\n\nGentzkow, M., & Shapiro, J. M. (2014). Code and data for the social sciences: A practitioner’s guide. University of Chicago.\nWilson, G., et al. (2017). Good enough practices in scientific computing. PLOS Computational Biology, 13(6).\nPeng, R. D. (2011). Reproducible research in computational science. Science, 334(6060), 1226-1227.\n\n\n\n5.1.3 计量经济学方法\n\nAngrist, J. D., & Pischke, J.-S. (2008). Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.\nWooldridge, J. M. (2010). Econometric Analysis of Cross Section and Panel Data. MIT Press.\nCunningham, S. (2021). Causal Inference: The Mixtape. Yale University Press.\n\n\n\n5.1.4 AI 与数据分析\n\nMolnar, C. (2022). Interpretable Machine Learning. Lulu.\nMarcus, G., & Davis, E. (2019). Rebooting AI: Building Artificial Intelligence We Can Trust. Pantheon.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#stata-资源",
+    "href": "references.html#stata-资源",
+    "title": "5  参考文献",
+    "section": "5.2 Stata 资源",
+    "text": "5.2 Stata 资源\n\n5.2.1 官方资源\n\nStata 官网\nStata 博客\nStata YouTube 频道\nStata Journal\n\n\n\n5.2.2 社区资源\n\nStatalist 邮件列表\nStata 知乎专栏\nStata 外部命令库\n统计软件网",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#工具与扩展",
+    "href": "references.html#工具与扩展",
+    "title": "5  参考文献",
+    "section": "5.3 工具与扩展",
+    "text": "5.3 工具与扩展\n\n5.3.1 VS Code 扩展\n\nStata Enhanced\nQuarto\nGitHub Copilot\nGitLens\n\n\n\n5.3.2 MCP 相关\n\nModel Context Protocol 官方文档\nStata MCP Server GitHub\nClaude Code\n\n\n\n5.3.3 版本控制\n\nGit 官方文档\nGitHub Guides\nGitKraken - Git 图形界面",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#相关课程与教程",
+    "href": "references.html#相关课程与教程",
+    "title": "5  参考文献",
+    "section": "5.4 相关课程与教程",
+    "text": "5.4 相关课程与教程\n\n5.4.1 在线课程\n\nCoursera: Econometrics for Economists\nedX: Data Science for Economists\nMIT OpenCourseWare: Econometrics\n\n\n\n5.4.2 教程网站\n\nPrinceton Stata Tutorial\nUCLA Stata Resources\nDIME Analytics",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#本课程相关资源",
+    "href": "references.html#本课程相关资源",
+    "title": "5  参考文献",
+    "section": "5.5 本课程相关资源",
+    "text": "5.5 本课程相关资源\n\n5.5.1 讲义与代码\n\n课程 GitHub 仓库\n幻灯片下载\n示例代码库\n\n\n\n5.5.2 推荐扩展命令\n* 数据处理\nssc install ftools, replace   // 快速分组计算\nssc install gtools, replace   // 高效数据操作\nssc install tidy, replace     // 数据整理\n\n* 估计方法\nssc install reghdfe, replace  // 高维固定效应\nssc install did_multiplegt, replace  // 多期DID\nssc install csdid, replace    // Callaway-Sant'Anna DID\nssc install drdid, replace    // 双重稳健DID\n\n* 输出与可视化\nssc install estout, replace   // 表格输出\nssc install coefplot, replace // 系数图\nssc install grstyle, replace  // 图形样式\nssc install palettes, replace // 颜色调色板\n\n* 工具类\nssc install ietoolkit, replace // 影响评估工具包\nssc install texdoc, replace    // LaTeX文档生成",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#进一步学习路径",
+    "href": "references.html#进一步学习路径",
+    "title": "5  参考文献",
+    "section": "5.6 进一步学习路径",
+    "text": "5.6 进一步学习路径\n\n5.6.1 初级 → 中级\n\n掌握本课程内容\n阅读 Wooldridge (2010)\n完成一个完整的实证项目\n学习 Git 版本控制\n\n\n\n5.6.2 中级 → 高级\n\n学习机器学习在计量中的应用\n深入因果推断方法\n学习 Python/R 作为补充工具\n参与开源项目贡献\n\n\n\n5.6.3 高级 → 专家\n\n研究前沿计量方法\n开发 Stata 外部命令\n在学术期刊发表论文\n分享知识、指导他人",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#联系方式",
+    "href": "references.html#联系方式",
+    "title": "5  参考文献",
+    "section": "5.7 联系方式",
+    "text": "5.7 联系方式\n\n微信公众号: 数量经济学\n网站: www.aistata.cn\n邮箱: contact@aistata.cn\n\n\n\n\n\n\n\n\n致谢\n\n\n\n感谢所有为本课程提供反馈和建议的学员！你的意见帮助我们不断改进。",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>参考文献</span>"
+    ]
+  }
+]

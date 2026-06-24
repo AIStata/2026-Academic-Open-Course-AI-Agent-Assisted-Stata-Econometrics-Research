@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="在人工智能时代，经济学研究者需要一套完整的工具链来应对日益复杂的研究任务。">
+
+<title>4&nbsp; 第三讲：Claude Code + Stata MCP 深度协作 – AI Agent辅助计量经济学研究：Stata 现代化工作流程</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./02-dofile-management.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0348920b7671f696dc9078d39bff215e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-103639876cd5f3e2b8a392fcf2f9a2f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ad9cca29aab4925a61aee51ff66bf9c9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-103639876cd5f3e2b8a392fcf2f9a2f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-claude-stata-mcp.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第三讲：Claude Code + Stata MCP 深度协作</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">AI Agent辅助计量经济学研究：Stata 现代化工作流程</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://www.aistata.cn" title="计量经济网" class="quarto-navigation-tool px-1" aria-label="计量经济网"><i class="bi bi-globe"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">AI Agent辅助计量经济学研究：Stata 现代化工作流程</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-stata-vscode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一讲：Stata 环境配置与 VS Code 集成</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-dofile-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第二讲：Do-file 运行与结果管理</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-claude-stata-mcp.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第三讲：Claude Code + Stata MCP 深度协作</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#stata-mcp-setup" id="toc-stata-mcp-setup" class="nav-link active" data-scroll-target="#stata-mcp-setup"><span class="header-section-number">4.1</span> Stata MCP 配置与原理</a>
+  <ul class="collapse">
+  <li><a href="#mcp-intro" id="toc-mcp-intro" class="nav-link" data-scroll-target="#mcp-intro"><span class="header-section-number">4.1.1</span> Model Context Protocol 简介</a></li>
+  <li><a href="#workflow-shift" id="toc-workflow-shift" class="nav-link" data-scroll-target="#workflow-shift"><span class="header-section-number">4.1.2</span> 从”复制粘贴”到”直接执行”的工作流转变</a></li>
+  <li><a href="#mcp-config" id="toc-mcp-config" class="nav-link" data-scroll-target="#mcp-config"><span class="header-section-number">4.1.3</span> 环境配置与连接演示</a></li>
+  </ul></li>
+  <li><a href="#ai-research" id="toc-ai-research" class="nav-link" data-scroll-target="#ai-research"><span class="header-section-number">4.2</span> AI 辅助研究实战</a>
+  <ul class="collapse">
+  <li><a href="#nl-to-stata" id="toc-nl-to-stata" class="nav-link" data-scroll-target="#nl-to-stata"><span class="header-section-number">4.2.1</span> 自然语言驱动的 Stata 代码生成</a></li>
+  <li><a href="#ai-explanation" id="toc-ai-explanation" class="nav-link" data-scroll-target="#ai-explanation"><span class="header-section-number">4.2.2</span> AI 代码解释与逻辑拆解</a></li>
+  <li><a href="#code-optimization" id="toc-code-optimization" class="nav-link" data-scroll-target="#code-optimization"><span class="header-section-number">4.2.3</span> 代码改写与优化建议</a></li>
+  <li><a href="#research-ideas" id="toc-research-ideas" class="nav-link" data-scroll-target="#research-ideas"><span class="header-section-number">4.2.4</span> 研究思路探索与方法讨论</a></li>
+  </ul></li>
+  <li><a href="#callaway-santanna-2021" id="toc-callaway-santanna-2021" class="nav-link" data-scroll-target="#callaway-santanna-2021"><span class="header-section-number">4.3</span> 2. Callaway &amp; Sant’Anna (2021)</a></li>
+  <li><a href="#didm-de-chaisemartin-dhaultfoeuille" id="toc-didm-de-chaisemartin-dhaultfoeuille" class="nav-link" data-scroll-target="#didm-de-chaisemartin-dhaultfoeuille"><span class="header-section-number">4.4</span> 3. DIDM (de Chaisemartin &amp; D’Haultfoeuille)</a></li>
+  <li><a href="#建议步骤" id="toc-建议步骤" class="nav-link" data-scroll-target="#建议步骤"><span class="header-section-number">4.5</span> 建议步骤：</a></li>
+  <li><a href="#潜在问题" id="toc-潜在问题" class="nav-link" data-scroll-target="#潜在问题"><span class="header-section-number">4.6</span> 潜在问题：</a></li>
+  <li><a href="#改进建议" id="toc-改进建议" class="nav-link" data-scroll-target="#改进建议"><span class="header-section-number">4.7</span> 改进建议：</a></li>
+  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example"><span class="header-section-number">4.8</span> 完整实战案例</a>
+  <ul class="collapse">
+  <li><a href="#案例用-ai-辅助完成一个完整的实证项目" id="toc-案例用-ai-辅助完成一个完整的实证项目" class="nav-link" data-scroll-target="#案例用-ai-辅助完成一个完整的实证项目"><span class="header-section-number">4.8.1</span> 案例：用 AI 辅助完成一个完整的实证项目</a></li>
+  </ul></li>
+  <li><a href="#prompt-tips" id="toc-prompt-tips" class="nav-link" data-scroll-target="#prompt-tips"><span class="header-section-number">4.9</span> 提示词技巧与最佳实践</a>
+  <ul class="collapse">
+  <li><a href="#有效的提示词结构" id="toc-有效的提示词结构" class="nav-link" data-scroll-target="#有效的提示词结构"><span class="header-section-number">4.9.1</span> 有效的提示词结构</a></li>
+  <li><a href="#提示词模板库" id="toc-提示词模板库" class="nav-link" data-scroll-target="#提示词模板库"><span class="header-section-number">4.9.2</span> 提示词模板库</a></li>
+  </ul></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">4.10</span> 练习</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="claude-stata-mcp" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">第三讲：Claude Code + Stata MCP 深度协作</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="stata-mcp-setup" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="stata-mcp-setup"><span class="header-section-number">4.1</span> Stata MCP 配置与原理</h2>
+<section id="mcp-intro" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="mcp-intro"><span class="header-section-number">4.1.1</span> Model Context Protocol 简介</h3>
+<section id="什么是-mcp" class="level4">
+<h4 class="anchored" data-anchor-id="什么是-mcp">什么是 MCP？</h4>
+<p><strong>模型上下文协议 (Model Context Protocol, MCP)</strong> 是 Anthropic 开发的开放式协议，用于在 AI 助手和外部工具之间建立标准化连接。它让 Claude 能够：</p>
+<ul>
+<li>直接访问本地文件系统</li>
+<li>读取和写入文件</li>
+<li>执行命令行工具</li>
+<li>与数据库交互</li>
+<li>调用特定领域的 API</li>
+</ul>
+</section>
+<section id="传统工作流-vs-mcp-工作流" class="level4">
+<h4 class="anchored" data-anchor-id="传统工作流-vs-mcp-工作流">传统工作流 vs MCP 工作流</h4>
+<p><strong>传统方式：复制粘贴</strong></p>
+<pre><code>1. 在 Stata 中查看数据
+2. 复制结果到 Claude
+3. Claude 给出代码
+4. 复制代码回 Stata
+5. 运行代码查看结果
+6. 重复...</code></pre>
+<p><strong>MCP 方式：直接执行</strong></p>
+<pre><code>1. Claude 通过 MCP 直接连接 Stata
+2. Claude 读取数据、分析结果
+3. Claude 直接在 Stata 中执行代码
+4. 实时获取结果并迭代分析</code></pre>
+</section>
+</section>
+<section id="workflow-shift" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="workflow-shift"><span class="header-section-number">4.1.2</span> 从”复制粘贴”到”直接执行”的工作流转变</h3>
+<section id="传统工作流的痛点" class="level4">
+<h4 class="anchored" data-anchor-id="传统工作流的痛点">传统工作流的痛点</h4>
+<pre class="mermaid"><code>flowchart TD
+    A[Stata 分析] --&gt; B{遇到问题}
+    B --&gt;|复制错误| C[打开 Claude]
+    C --&gt;|粘贴问题| D[等待回复]
+    D --&gt;|获取代码| E[复制回 Stata]
+    E --&gt; F[运行代码]
+    F --&gt; G{是否解决?}
+    G --&gt;|否| B
+    G --&gt;|是| H[继续分析]</code></pre>
+</section>
+<section id="mcp-工作流的优势" class="level4">
+<h4 class="anchored" data-anchor-id="mcp-工作流的优势">MCP 工作流的优势</h4>
+<pre class="mermaid"><code>flowchart TD
+    A[开始分析] --&gt; B[Claude + Stata MCP]
+    B --&gt; C{Claude 直接操作}
+    C --&gt;|读取数据| D[分析问题]
+    C --&gt;|执行代码| E[获取结果]
+    D --&gt; F[提供解决方案]
+    E --&gt; F
+    F --&gt; G{满意?}
+    G --&gt;|是| H[完成]
+    G --&gt;|否| C</code></pre>
+</section>
+</section>
+<section id="mcp-config" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="mcp-config"><span class="header-section-number">4.1.3</span> 环境配置与连接演示</h3>
+<section id="前置要求" class="level4">
+<h4 class="anchored" data-anchor-id="前置要求">前置要求</h4>
+<ol type="1">
+<li><strong>Stata 17 或更高版本</strong>
+<ul>
+<li>支持 <code>stata_cmd</code> 接口</li>
+<li>推荐 Stata 18 MP</li>
+</ul></li>
+<li><strong>VS Code</strong>
+<ul>
+<li>最新版本</li>
+<li>Claude Code 扩展</li>
+</ul></li>
+<li><strong>Claude Code</strong>
+<ul>
+<li>安装 Claude Code CLI</li>
+<li>或使用 VS Code Claude Code 扩展</li>
+</ul></li>
+</ol>
+</section>
+<section id="配置步骤" class="level4">
+<h4 class="anchored" data-anchor-id="配置步骤">配置步骤</h4>
+<p><strong>步骤1：安装 Stata MCP 服务器</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 npm 安装（需要 Node.js）</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/stata-mcp-server</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 或从源码安装</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/anthropic/stata-mcp.git</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> stata-mcp</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> link</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>步骤2：配置 Claude Code</strong></p>
+<p>在 VS Code 设置中添加 MCP 配置：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcp.servers"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"npx"</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"-y"</span><span class="ot">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"@anthropic-ai/stata-mcp-server"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_PATH"</span><span class="fu">:</span> <span class="st">"C:/Program Files/Stata18/StataMP-64.exe"</span><span class="fu">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_WORKING_DIR"</span><span class="fu">:</span> <span class="st">"D:/research/project"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>macOS 配置：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcp.servers"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"npx"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"-y"</span><span class="ot">,</span> <span class="st">"@anthropic-ai/stata-mcp-server"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_PATH"</span><span class="fu">:</span> <span class="st">"/Applications/Stata/StataMP.app/Contents/MacOS/StataMP"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_WORKING_DIR"</span><span class="fu">:</span> <span class="st">"/Users/username/research/project"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Linux 配置：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcp.servers"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"npx"</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"args"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"-y"</span><span class="ot">,</span> <span class="st">"@anthropic-ai/stata-mcp-server"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"env"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_PATH"</span><span class="fu">:</span> <span class="st">"/usr/local/stata18/stata-mp"</span><span class="fu">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"STATA_WORKING_DIR"</span><span class="fu">:</span> <span class="st">"/home/username/research/project"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>步骤3：验证连接</strong></p>
+<p>在 Claude Code 中输入：</p>
+<pre><code>测试 Stata MCP 连接</code></pre>
+<p>成功后会显示：</p>
+<pre><code>✓ Stata MCP 已连接
+Stata 版本: 18.0
+工作目录: D:/research/project</code></pre>
+</section>
+<section id="配置文件详解" class="level4">
+<h4 class="anchored" data-anchor-id="配置文件详解">配置文件详解</h4>
+<p>创建 <code>stata-mcp-config.json</code>：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"stata"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"C:/Program Files/Stata18/StataMP-64.exe"</span><span class="fu">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"workingDir"</span><span class="fu">:</span> <span class="st">"D:/research/project"</span><span class="fu">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"timeout"</span><span class="fu">:</span> <span class="dv">30000</span><span class="fu">,</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"autoSave"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"saveHistory"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mcp"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"capabilities"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tools"</span><span class="ot">,</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"resources"</span><span class="ot">,</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"prompts"</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tools"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata_run"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"运行 Stata 代码"</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata_run_file"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"运行 Stata do-file"</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata_browse"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"浏览数据"</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata_describe"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"描述数据结构"</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stata_summarize"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"enabled"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"统计摘要"</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="ai-research" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="ai-research"><span class="header-section-number">4.2</span> AI 辅助研究实战</h2>
+<section id="nl-to-stata" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="nl-to-stata"><span class="header-section-number">4.2.1</span> 自然语言驱动的 Stata 代码生成</h3>
+<section id="基础示例" class="level4">
+<h4 class="anchored" data-anchor-id="基础示例">基础示例</h4>
+<p><strong>场景1：数据加载和基本检查</strong></p>
+<pre><code>用户: 加载 auto 数据集并查看基本信息</code></pre>
+<p>Claude 通过 MCP 执行：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sysuse</span> auto, <span class="kw">clear</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>获取结果后，Claude 会分析并继续：</p>
+<pre><code>已加载 auto 数据集，包含74个观测和12个变量。主要变量包括：
+- price: 汽车价格（均值6165美元）
+- mpg: 每加仑英里数（均值21.3）
+- weight: 重量（均值3019磅）
+
+需要我进行进一步分析吗？</code></pre>
+<p><strong>场景2：回归分析</strong></p>
+<pre><code>用户: 用 price 作为因变量，mpg weight 和 foreign 作为自变量做回归，
+并输出结果表格</code></pre>
+<p>Claude 执行：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sysuse</span> auto, <span class="kw">clear</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>* 基准回归</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> price mpg <span class="kw">weight</span> i.foreign, <span class="kw">robust</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m1</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>* 输出表格</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>esttab m1, se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="进阶示例完整分析流程" class="level4">
+<h4 class="anchored" data-anchor-id="进阶示例完整分析流程">进阶示例：完整分析流程</h4>
+<p><strong>用户请求：</strong></p>
+<pre><code>我有一个关于教育回报率的数据集，变量包括：
+- lwage: 对数工资
+- educ: 受教育年数
+- exper: 工作经验
+- tenure: 在现职年数
+- black: 是否黑人
+- south: 是否居住在南部
+
+请帮我做一个完整的分析，包括：
+1. 描述性统计
+2. 基准回归
+3. 异质性分析
+4. 稳健性检验</code></pre>
+<p><strong>Claude 的分析流程：</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>* 步骤1: 加载和检查数据</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$data/wage2.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>* 步骤2: 描述性统计表格</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>estpost <span class="kw">summarize</span> lwage educ exper tenure <span class="bn">black</span> south</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>esttab <span class="kw">using</span> <span class="st">"$tables/summary.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    cells(<span class="st">"mean sd min max count"</span>) <span class="kw">label</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>* 步骤3: 基准回归</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">clear</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage educ exper tenure <span class="bn">black</span> south, <span class="kw">robust</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> base</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>* 步骤4: 异质性分析 - 按地区分组</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage educ exper tenure <span class="bn">black</span> <span class="kw">if</span> south == 0, <span class="kw">robust</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> north</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage educ exper tenure <span class="bn">black</span> <span class="kw">if</span> south == 1, <span class="kw">robust</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> south_region</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>* 步骤5: 稳健性检验 - 加入经验平方项</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> exper2 = exper^2</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> lwage educ exper exper2 tenure <span class="bn">black</span> south, <span class="kw">robust</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> <span class="kw">robust</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>* 步骤6: 输出所有结果</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>esttab base north south_region <span class="kw">robust</span> <span class="co">///</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> <span class="st">"$tables/main_results.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01) <span class="co">///</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> mtitles(<span class="st">"基准"</span> <span class="st">"北方"</span> <span class="st">"南方"</span> <span class="st">"稳健性"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Claude 继续分析：</strong></p>
+<pre><code>分析完成！主要发现：
+
+1. 教育回报率显著为正，约 8%
+2. 工作经验和任期也有正回报
+3. 存在显著的地区异质性
+4. 结果在加入二次项后仍然稳健
+
+需要我进一步解释结果或进行其他检验吗？</code></pre>
+</section>
+</section>
+<section id="ai-explanation" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="ai-explanation"><span class="header-section-number">4.2.2</span> AI 代码解释与逻辑拆解</h3>
+<section id="理解复杂计量方法" class="level4">
+<h4 class="anchored" data-anchor-id="理解复杂计量方法">理解复杂计量方法</h4>
+<p><strong>示例：理解 DID 模型</strong></p>
+<pre><code>用户: 请解释以下 DID 代码的逻辑，并用简单的语言说明
+
+gen treat = (country == "treatment")
+gen post = (year &gt;= 2020)
+gen did = treat * post
+
+reg outcome treat post did, robust</code></pre>
+<p><strong>Claude 的解释：</strong></p>
+<pre><code>这段代码实现了双重差分（DID）模型，逻辑如下：
+
+1. **分组变量 (`treat`)**
+   - 处理组 = 1（政策实施地区）
+   - 对照组 = 0（其他地区）
+
+2. **时间变量 (`post`)**
+   - 政策后 = 1（2020年及以后）
+   - 政策前 = 0（2020年以前）
+
+3. **交互项 (`did`)**
+   - 这是关键变量！系数表示政策效果
+   - 即：处理组在政策后的变化 减去 对照组的变化
+
+4. **回归方程**
+   outcome = β₀ + β₁treat + β₂post + β₃did + ε
+   - β₁: 组间固定差异
+   - β₂: 时间趋势
+   - β₃: DID 估计量（政策效果）✭
+
+用通俗的话说：我们比较处理组在政策前后的变化，
+同时减去对照组在同一时期的变化，这样就能分离出
+政策的净效果，排除其他同时期发生的因素影响。
+
+需要我生成一个可视化的例子吗？</code></pre>
+</section>
+<section id="代码优化建议" class="level4">
+<h4 class="anchored" data-anchor-id="代码优化建议">代码优化建议</h4>
+<p><strong>原代码：</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> <span class="fu">y</span> x1 <span class="kw">x2</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> yhat</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">resid</span> = <span class="fu">y</span> - yhat</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">scatter</span> <span class="kw">resid</span> x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Claude 的优化建议：</strong></p>
+<pre><code>代码可以优化为：
+
+stata
+reg y x1 x2
+rvfplot, name(resid_x1, replace)
+graph export "$figures/residual_plot.png", replace
+
+改进点：
+1. 使用 `rvfplot` 直接绘制残差图，更简洁
+2. 添加图形名称便于管理
+3. 直接导出图形保存结果
+
+另外，建议考虑：
+- 检查异方差：`estat hettest`
+- 看其他诊断图：`avplot`, `cprplot`
+- 考虑稳健标准误：`reg y x1 x2, robust`</code></pre>
+</section>
+</section>
+<section id="code-optimization" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="code-optimization"><span class="header-section-number">4.2.3</span> 代码改写与优化建议</h3>
+<section id="示例1从低效到高效" class="level4">
+<h4 class="anchored" data-anchor-id="示例1从低效到高效">示例1：从低效到高效</h4>
+<p><strong>原始代码：</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="kw">data</span>.dta, <span class="kw">clear</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lnprice = <span class="fu">log</span>(price)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lnincome = <span class="fu">log</span>(income)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lnprice lnincome <span class="kw">if</span> <span class="fu">year</span> == 2010</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m1</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lnprice lnincome <span class="kw">if</span> <span class="fu">year</span> == 2011</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m2</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lnprice lnincome <span class="kw">if</span> <span class="fu">year</span> == 2012</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m3</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>esttab m1 m2 m3 <span class="kw">using</span> results.tex, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Claude 优化后：</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="kw">data</span>.dta, <span class="kw">clear</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>* 生成变量</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lnprice = <span class="fu">log</span>(price)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lnincome = <span class="fu">log</span>(income)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>* 使用循环简化代码</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">clear</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> <span class="fu">year</span> = 2010/2012 {</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">reg</span> lnprice lnincome <span class="kw">if</span> <span class="fu">year</span> == <span class="ot">`year'</span>, <span class="kw">robust</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">estimates</span> <span class="kw">store</span> m<span class="ot">`year'</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>* 输出带年份标签的表格</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>esttab m2010 m2011 m2012 <span class="kw">using</span> <span class="st">"$tables/yearly_reg.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01) <span class="co">///</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> mtitles(<span class="st">"2010"</span> <span class="st">"2011"</span> <span class="st">"2012"</span>) <span class="co">///</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    addnotes(<span class="st">"稳健标准误在括号中"</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>* 或者更高效的方法：使用交互项</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> lnprice lnincome i.<span class="fu">year</span> i.year#c.lnincome, <span class="kw">robust</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="kw">testparm</span> i.year#c.lnincome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="示例2添加错误处理" class="level4">
+<h4 class="anchored" data-anchor-id="示例2添加错误处理">示例2：添加错误处理</h4>
+<p><strong>Claude 生成的健壮代码：</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>*  安全的数据分析脚本</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="fu">log</span> <span class="kw">close</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">more</span> <span class="kw">off</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>* 参数设置</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> datafile <span class="st">"$data/analysis_data.dta"</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> depvar lwage</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> indvars educ exper tenure</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>* 检查文件</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span> file <span class="st">"`datafile'"</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="dt">_rc</span> != 0 {</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span> <span class="kw">as</span> <span class="kw">error</span> <span class="st">"错误: 数据文件不存在！"</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit</span> 601</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>* 加载数据</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"`datafile'"</span>, <span class="kw">clear</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>* 检查变量</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> <span class="ot">`depvar'</span> <span class="ot">`indvars'</span> {</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">capture</span> <span class="kw">confirm</span> <span class="kw">variable</span> <span class="ot">`var'</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="dt">_rc</span> != 0 {</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span> <span class="kw">as</span> <span class="kw">error</span> <span class="st">"错误: 变量 `var' 不存在！"</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">exit</span> 111</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>* 检查缺失值</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> <span class="ot">`depvar'</span> <span class="ot">`indvars'</span> {</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span> <span class="kw">if</span> <span class="fu">missing</span>(<span class="ot">`var'</span>)</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="fu">r</span>(<span class="kw">N</span>) &gt; 0 {</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>        <span class="kw">display</span> <span class="kw">as</span> warning <span class="st">"警告: `var' 有 "</span> <span class="fu">r</span>(<span class="kw">N</span>) <span class="st">" 个缺失值"</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>* 回归分析</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> <span class="ot">`depvar'</span> <span class="ot">`indvars'</span>, <span class="kw">robust</span></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>* 检查样本量</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="fu">e</span>(<span class="kw">N</span>) &lt; 50 {</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span> <span class="kw">as</span> <span class="kw">error</span> <span class="st">"错误: 样本量不足！"</span></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">exit</span> 459</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>* 保存结果</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> main_model</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>esttab main_model <span class="kw">using</span> <span class="st">"$tables/results.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>    se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01)</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"分析成功完成！"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="research-ideas" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="research-ideas"><span class="header-section-number">4.2.4</span> 研究思路探索与方法讨论</h3>
+<section id="场景1方法选择咨询" class="level4">
+<h4 class="anchored" data-anchor-id="场景1方法选择咨询">场景1：方法选择咨询</h4>
+<pre><code>用户: 我有一个面板数据，想研究最低工资对就业的影响，
+应该用什么方法？</code></pre>
+<p><strong>Claude 的建议：</strong></p>
+<pre><code>对于最低工资与就业的研究，有几种常用方法：
+
+## 1. 双向固定效应（TWFE）
+```stata
+xtset state year
+xtreg employment min_wage i.year, fe vce(cluster state)</code></pre>
+<p>优点：经典方法，易实现 缺点：可能受处理效应异质性影响</p>
+</section>
+</section>
+</section>
+<section id="callaway-santanna-2021" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="callaway-santanna-2021"><span class="header-section-number">4.3</span> 2. Callaway &amp; Sant’Anna (2021)</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install csdid</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>csdid employment, ivar(state) time(<span class="fu">year</span>) gvar(first_treat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>优点：处理异质性处理效应 缺点：计算较复杂</p>
+</section>
+<section id="didm-de-chaisemartin-dhaultfoeuille" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="didm-de-chaisemartin-dhaultfoeuille"><span class="header-section-number">4.4</span> 3. DIDM (de Chaisemartin &amp; D’Haultfoeuille)</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install did_multiplegt</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>did_multiplegt employment state <span class="fu">year</span> first_treat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>优点：考虑处理时间变化 缺点：需要安装外部命令</p>
+</section>
+<section id="建议步骤" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="建议步骤"><span class="header-section-number">4.5</span> 建议步骤：</h2>
+<ol type="1">
+<li>先画事件研究图看平行趋势</li>
+<li>用基准 TWFE 做初步分析</li>
+<li>用 csdid 或 did_multiplegt 做稳健性检验</li>
+<li>展示多种方法结果的一致性</li>
+</ol>
+<p>需要我帮你实现这些分析吗？</p>
+<pre><code>
+#### 场景2：研究设计反馈
+</code></pre>
+<p>用户: 我准备这样分析这个问题，帮我看看有什么问题：</p>
+<ol type="1">
+<li>用 OLS 回归 Y = βX + ε</li>
+<li>如果显著就得出结论</li>
+<li>再加入一些控制变量看看结果是否变化</li>
+</ol>
+<pre><code>
+**Claude 的反馈：**
+</code></pre>
+<p>你的设计有几个需要改进的地方：</p>
+</section>
+<section id="潜在问题" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="潜在问题"><span class="header-section-number">4.6</span> 潜在问题：</h2>
+<ol type="1">
+<li><strong>遗漏变量偏误</strong>
+<ul>
+<li>只加控制变量不够，需要考虑选择哪些控制变量</li>
+<li>建议画因果图（DAG）确定需要控制的变量</li>
+</ul></li>
+<li><strong>缺乏识别策略</strong>
+<ul>
+<li>OLS 可能存在内生性</li>
+<li>需要考虑：DID、IV、RDD 等识别方法</li>
+</ul></li>
+<li><strong>稳健性不足</strong>
+<ul>
+<li>应该报告多种设定的结果</li>
+<li>做安慰剂检验、子样本分析等</li>
+</ul></li>
+</ol>
+</section>
+<section id="改进建议" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="改进建议"><span class="header-section-number">4.7</span> 改进建议：</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>* 1. 先做描述性统计和相关性分析</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>estpost correlate <span class="fu">y</span> x controls</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>esttab <span class="kw">using</span> <span class="st">"$tables/corr.tex"</span>, <span class="kw">replace</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>* 2. 逐步加入控制变量</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">clear</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> <span class="fu">y</span> x, <span class="kw">robust</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m1</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> <span class="fu">y</span> x controls1, <span class="kw">robust</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m2</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> <span class="fu">y</span> x controls1 controls2, <span class="kw">robust</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> m3</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>* 3. 考虑识别策略</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>* DID: <span class="kw">reg</span> <span class="fu">y</span> i.treat i.<span class="kw">post</span> i.treat#i.<span class="kw">post</span> controls, <span class="kw">robust</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>* IV: ivregress 2sls <span class="fu">y</span> (x = z) controls, <span class="kw">robust</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>* 4. 稳健性检验</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>* 子样本、安慰剂、不同标准误设定</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="complete-example" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="complete-example"><span class="header-section-number">4.8</span> 完整实战案例</h2>
+<section id="案例用-ai-辅助完成一个完整的实证项目" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="案例用-ai-辅助完成一个完整的实证项目"><span class="header-section-number">4.8.1</span> 案例：用 AI 辅助完成一个完整的实证项目</h3>
+<section id="步骤1项目初始化" class="level4">
+<h4 class="anchored" data-anchor-id="步骤1项目初始化">步骤1：项目初始化</h4>
+<pre><code>用户: 我想研究国际贸易对经济增长的影响，数据有：
+- 国家面板数据（1990-2020）
+- 变量: gdp, trade, investment, education, population
+
+帮我搭建项目框架</code></pre>
+<p><strong>Claude 创建项目结构：</strong></p>
+<pre><code>trade_growth/
+├── data/
+│   ├── raw/
+│   │   └── penn_world_table.dta
+│   └── clean/
+├── code/
+│   ├── 01_setup.do
+│   ├── 02_data_cleaning.do
+│   ├── 03_descriptive.do
+│   ├── 04_main_analysis.do
+│   └── 05_robustness.do
+├── results/
+│   ├── logs/
+│   ├── tables/
+│   └── figures/
+└── _quarto.yml</code></pre>
+</section>
+<section id="步骤2数据清洗" class="level4">
+<h4 class="anchored" data-anchor-id="步骤2数据清洗">步骤2：数据清洗</h4>
+<p>Claude 生成并执行：</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>* code/02_data_cleaning.<span class="kw">do</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$data/raw/penn_world_table.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>* 选择变量</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> country <span class="fu">year</span> gdp trade investment education population</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>* 生成对数变量</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">in</span> gdp trade investment education population {</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">gen</span> ln_<span class="ot">`var'</span> = <span class="fu">log</span>(<span class="ot">`var'</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> <span class="kw">var</span> ln_<span class="ot">`var'</span> <span class="st">"对数`var'"</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>* 生成增长率</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> country (<span class="fu">year</span>): <span class="kw">gen</span> gdp_growth = (ln_gdp - L.ln_gdp) * 100</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">var</span> gdp_growth <span class="st">"GDP增长率(%)"</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>* 生成滞后项</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> country (<span class="fu">year</span>): <span class="kw">gen</span> lag_trade = L.trade</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> country (<span class="fu">year</span>): <span class="kw">gen</span> lag_investment = L.investment</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>* 生成人均变量</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> gdp_per_capita = gdp / population</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> ln_gdp_pc = <span class="fu">log</span>(gdp_per_capita)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>* 平衡面板</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>xtset country <span class="fu">year</span></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>xtbalance, <span class="kw">range</span>(1990 2020)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>* 保存</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> <span class="st">"$data/clean/analysis_data.dta"</span>, <span class="kw">replace</span></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"数据清洗完成！"</span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="步骤3描述性分析" class="level4">
+<h4 class="anchored" data-anchor-id="步骤3描述性分析">步骤3：描述性分析</h4>
+<pre><code>用户: 帮我做一些描述性统计和图表</code></pre>
+<p>Claude 执行：</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>* code/03_descriptive.<span class="kw">do</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$data/clean/analysis_data.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>* 描述性统计表格</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>estpost <span class="kw">summarize</span> gdp_growth trade investment education</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>esttab <span class="kw">using</span> <span class="st">"$tables/summary_stats.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    cells(<span class="st">"mean sd p25 p50 p75 count"</span>) <span class="kw">label</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>* 相关系数矩阵</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>estpost correlate gdp_growth trade investment education</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>esttab <span class="kw">using</span> <span class="st">"$tables/corr_matrix.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> notitle <span class="kw">noobs</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>* 时间趋势图</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="kw">preserve</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="kw">collapse</span> (<span class="kw">mean</span>) gdp_growth trade, <span class="kw">by</span>(<span class="fu">year</span>)</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">line</span> gdp_growth <span class="fu">year</span>) (<span class="kw">line</span> trade <span class="fu">year</span>, yaxis(2)), <span class="co">///</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>    <span class="bn">title</span>(<span class="st">"GDP增长与贸易时间趋势"</span>) <span class="co">///</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    <span class="bn">ytitle</span>(<span class="st">"GDP增长率(%)"</span>, axis(1)) <span class="co">///</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="bn">ytitle</span>(<span class="st">"贸易额"</span>, axis(2)) <span class="co">///</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">"GDP增长"</span>) <span class="kw">label</span>(2 <span class="st">"贸易"</span>)) <span class="co">///</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    <span class="dv">scheme</span>(s1mono)</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="st">"$figures/time_trend.pdf"</span>, <span class="kw">replace</span></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="kw">restore</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>* 散点图</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">scatter</span> gdp_growth trade, msize(tiny)) <span class="co">///</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">lfit</span> gdp_growth trade), <span class="co">///</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="bn">title</span>(<span class="st">"贸易与GDP增长的关系"</span>) <span class="co">///</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    <span class="bn">xtitle</span>(<span class="st">"贸易额"</span>) <span class="bn">ytitle</span>(<span class="st">"GDP增长率"</span>)</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="st">"$figures/scatter_trade_growth.pdf"</span>, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="步骤4主要分析" class="level4">
+<h4 class="anchored" data-anchor-id="步骤4主要分析">步骤4：主要分析</h4>
+<pre><code>用户: 现在做主要的回归分析，用固定效应模型</code></pre>
+<p>Claude 执行：</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>* code/04_main_analysis.<span class="kw">do</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$data/clean/analysis_data.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>xtset country <span class="fu">year</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">clear</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>* 模型1: 混合 OLS</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> gdp_growth trade ln_investment ln_education, <span class="kw">robust</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> ols</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>* 模型2: 双向固定效应</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> <span class="kw">fe</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>* 模型3: 加入年份固定效应</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education i.<span class="fu">year</span>, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> fe_year</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>* 模型4: 用滞后贸易</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth lag_trade ln_investment ln_education i.<span class="fu">year</span>, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> fe_lag</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>* 输出表格</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>esttab ols <span class="kw">fe</span> fe_year fe_lag <span class="kw">using</span> <span class="st">"$tables/main_regressions.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>    se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01) <span class="co">///</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> booktabs <span class="co">///</span></span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">keep</span>(trade lag_trade ln_investment ln_education) <span class="co">///</span></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>    mtitles(<span class="st">"OLS"</span> <span class="st">"FE"</span> <span class="st">"FE+Year"</span> <span class="st">"FE+Lag"</span>) <span class="co">///</span></span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>    indicate(<span class="st">"年份固定效应 = *.year"</span> <span class="st">"国家固定效应 = _cons"</span>) <span class="co">///</span></span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>    addnotes(<span class="st">"标准误在括号中"</span> <span class="st">"*** p&lt;0.01, ** p&lt;0.05, * p&lt;0.1"</span>)</span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>* 显示结果</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>esttab ols <span class="kw">fe</span> fe_year fe_lag, se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01) <span class="co">///</span></span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">keep</span>(trade lag_trade ln_investment ln_education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="步骤5稳健性检验" class="level4">
+<h4 class="anchored" data-anchor-id="步骤5稳健性检验">步骤5：稳健性检验</h4>
+<pre><code>用户: 做一些稳健性检验来验证结果</code></pre>
+<p>Claude 执行：</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>* code/05_robustness.<span class="kw">do</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>*-------------------------------------------------------------------------------</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$data/clean/analysis_data.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>xtset country <span class="fu">year</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">clear</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>* 1. 不同标准误设定</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education i.<span class="fu">year</span>, <span class="kw">fe</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> se_robust</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education i.<span class="fu">year</span>, <span class="kw">fe</span> <span class="kw">vce</span>(<span class="kw">cluster</span> country)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> se_cluster</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>* 2. 子样本分析</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education i.<span class="fu">year</span> <span class="kw">if</span> <span class="fu">year</span> &gt;= 2000, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> sub_recent</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth trade ln_investment ln_education i.<span class="fu">year</span> <span class="kw">if</span> gdp_per_capita &gt; 10000, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> sub_rich</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>* 3. 异质性 - 按收入水平</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> gdp_growth c.trade##i.income_group ln_investment ln_education i.<span class="fu">year</span>, <span class="kw">fe</span> <span class="kw">robust</span></span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> hetero_income</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>* 4. 动态面板（系统GMM）</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install xtabond2</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>xtabond2 gdp_growth L.gdp_growth trade ln_investment ln_education i.<span class="fu">year</span>, <span class="co">///</span></span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>    gmm(L.gdp_growth trade, lag(2 4)) iv(ln_investment ln_education i.<span class="fu">year</span>) <span class="co">///</span></span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>    twostep <span class="kw">robust</span> small</span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> gmm</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>* 输出稳健性检验结果</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>esttab se_robust se_cluster sub_recent sub_rich <span class="co">///</span></span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">using</span> <span class="st">"$tables/robustness.tex"</span>, <span class="kw">replace</span> <span class="co">///</span></span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>    se <span class="kw">star</span>(* 0.1 ** 0.05 *** 0.01) <span class="co">///</span></span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">keep</span>(trade) <span class="kw">label</span> <span class="co">///</span></span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>    mtitles(<span class="st">"Robust"</span> <span class="st">"Cluster"</span> <span class="st">"Recent"</span> <span class="st">"Rich"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="prompt-tips" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="prompt-tips"><span class="header-section-number">4.9</span> 提示词技巧与最佳实践</h2>
+<section id="有效的提示词结构" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="有效的提示词结构"><span class="header-section-number">4.9.1</span> 有效的提示词结构</h3>
+<pre><code>[上下文] + [任务] + [输出要求]</code></pre>
+<section id="示例1代码生成" class="level4">
+<h4 class="anchored" data-anchor-id="示例1代码生成">示例1：代码生成</h4>
+<pre><code>好的提示词：
+"我在研究最低工资对就业的影响，使用美国州级面板数据。
+请帮我写一个事件研究图的代码，包括平行趋势检验。
+使用 Stata 的 coefplot 画图，导出为 PDF。"</code></pre>
+</section>
+<section id="示例2问题诊断" class="level4">
+<h4 class="anchored" data-anchor-id="示例2问题诊断">示例2：问题诊断</h4>
+<pre><code>好的提示词：
+"我的回归得到了这个错误：'convergence not achieved'。
+我在做 logit 回归，变量有20个，样本量500。
+可能是什么原因？如何解决？"</code></pre>
+</section>
+</section>
+<section id="提示词模板库" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="提示词模板库"><span class="header-section-number">4.9.2</span> 提示词模板库</h3>
+<section id="模板1数据分析请求" class="level4">
+<h4 class="anchored" data-anchor-id="模板1数据分析请求">模板1：数据分析请求</h4>
+<pre><code>我有[数据类型]，变量包括[变量列表]。我想研究[研究问题]。
+
+请帮我：
+1. 首先进行描述性统计
+2. 然后做基准回归分析
+3. 进行适当的稳健性检验
+4. 输出高质量的表格和图形
+
+使用 Stata，遵循可复现研究的最佳实践。</code></pre>
+</section>
+<section id="模板2代码审查请求" class="level4">
+<h4 class="anchored" data-anchor-id="模板2代码审查请求">模板2：代码审查请求</h4>
+<pre><code>请帮我审查以下 Stata 代码，检查：
+1. 代码是否有错误
+2. 是否有可以优化的地方
+3. 是否符合计量经济学最佳实践
+4. 结果解释是否正确
+
+[粘贴代码]</code></pre>
+</section>
+<section id="模板3方法选择咨询" class="level4">
+<h4 class="anchored" data-anchor-id="模板3方法选择咨询">模板3：方法选择咨询</h4>
+<pre><code>我想研究[研究问题]，数据是[数据类型]。
+我考虑过[可选方法1]和[可选方法2]。
+
+你建议用什么方法？请比较不同方法的优缺点，
+并给出一个推荐的分析流程。</code></pre>
+</section>
+</section>
+</section>
+<section id="exercise-3" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">4.10</span> 练习</h2>
+<ol type="1">
+<li>配置 Stata MCP 并连接 Claude Code</li>
+<li>用自然语言让 Claude 帮你完成一个简单的回归分析</li>
+<li>请 Claude 解释一个复杂的计量方法（如合成控制法）</li>
+<li>让 Claude 帮你优化一段现有的 Stata 代码</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+总结
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>通过 Claude Code 和 Stata MCP，我们实现了： - 从”复制粘贴”到”直接执行”的工作流升级 - 自然语言驱动的数据分析 - AI 辅助的代码生成和优化 - 完整的实证研究支持</p>
+<p>这标志着计量经济学研究进入了 AI 辅助的新时代！</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-dofile-management.html" class="pagination-link" aria-label="第二讲：Do-file 运行与结果管理">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">第二讲：Do-file 运行与结果管理</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">参考文献</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 数量经济学</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link active" href="https://www.aistata.cn" aria-current="page">
+<p>计量经济网</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
